@@ -286,10 +286,3 @@ Full Stack & DevOps Developer
 
 ---
 
-## 📄 License
-
-This project is developed strictly for **educational and academic purposes** as part of college coursework.
-
----
-
-**Made with ❤️ for chai lovers worldwide**
