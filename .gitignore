@@ -5,3 +5,4 @@ dist
 build
 coverage
 .vercel
+node_modules/\n.env\ndist/
