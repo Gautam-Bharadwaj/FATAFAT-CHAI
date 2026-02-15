@@ -1,288 +1,90 @@
-#  FATAFAT CHAI
+# VOLT High Voltage Nutrition
 
-**Instant Indian Chai – From Click to Cup**
+**Premium Protein Drinks From Click to Cup**
 
-A full-stack e-commerce platform for ordering premium Indian chai online. Built with modern web technologies and deployed on cloud platforms.
+This is a high performance web platform designed for ordering premium protein shakes and fitness supplements. It was built using the MERN stack to ensure the store is fast, reliable, and easy to scale.
 
-FATAFAT CHAI is a **college DevOps project** that demonstrates practical expertise in full-stack development, REST API design, database management, and cloud deployment. The application provides a seamless experience for browsing chai products, managing carts, and processing orders.
-
----
-
-##  Project Overview
-
-**Type:** Full-Stack E-Commerce Application with DevOps Deployment  
-**Duration:** College Project  
-**Hosting:** Frontend (Vercel) + Backend (Render)
-
-### Key Learning Objectives
-
-- ✅ Build a functional, production-ready e-commerce platform
-- ✅ Design and implement RESTful APIs with proper CRUD operations
-- ✅ Master database design with SQLite and ORM (Prisma)
-- ✅ Handle cross-origin requests (CORS) after cloud deployment
-- ✅ Deploy full-stack applications on real hosting platforms
-- ✅ Manage environment variables and sensitive data securely
-- ✅ Implement version control with Git and GitHub
+VOLT is a professional full stack development project that highlights the ability to create robust e commerce solutions, manage secure databases, and deploy applications to the cloud.
 
 ---
 
-##  Tech Stack
+## Project Overview
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Frontend** | React.js, Vite, HTML5, CSS3 | Interactive UI & User Interface |
-| **Backend** | Node.js, Express.js | API Server & Business Logic |
-| **Database** | SQLite3 | Lightweight Data Storage |
-| **ORM** | Prisma | Type-safe Database Operations |
-| **Deployment** | Vercel (Frontend), Render (Backend) | Cloud Hosting |
-| **DevOps** | Git, GitHub, Environment Variables | Version Control & Configuration |
+**Type** Full Stack Fitness E Commerce Application  
+**Brand Identity** High energy, minimalist, and performance driven  
+**Hosting** Frontend on Vercel and Backend on Render
 
----
+### Learning Objectives
 
-##  Features
-
-### Customer Features
-- **Browse Products** - View all available chai products with descriptions
-- **Product Details** - Check detailed information, pricing, and ratings
-- **Shopping Cart** - Add/remove items and manage quantities
-- **Checkout** - Complete order placement with validation
-- **Responsive Design** - Works on desktop, tablet, and mobile
-
-### Admin / Backend Features
-- **Product Management** - Full CRUD operations for chai inventory
-- **Order Management** - Track and manage customer orders
-- **RESTful API** - Well-documented API endpoints for integration
-- **Database Operations** - Efficient queries using Prisma ORM
-- **Error Handling** - Comprehensive error responses and logging
+* Build a high performance architecture using the MERN stack
+* Design a clean, mobile first interface for fitness enthusiasts
+* Manage type safe data using Prisma and SQLite
+* Optimize API response times for a fast user experience
+* Securely manage user data and environment configurations
+* Deploy a production ready store with a professional workflow
 
 ---
 
-## API Endpoints
+## Tech Stack
 
-### Products CRUD API
-
-| Operation | Method | Endpoint | Description |
-|-----------|--------|----------|-------------|
-| List All | GET | `/api/products` | Fetch all chai products |
-| Get Single | GET | `/api/products/:id` | Get product by ID |
-| Create | POST | `/api/products` | Add new product (Admin) |
-| Update | PUT | `/api/products/:id` | Update product details |
-| Delete | DELETE | `/api/products/:id` | Remove a product |
-
-**All database operations use Prisma ORM with SQLite for data persistence.**
+**Frontend** React.js, Vite, and Tailwind CSS for a modern and responsive interface  
+**Backend** Node.js and Express.js for scalable API logic and order processing  
+**Database** SQLite3 for reliable and lightweight data storage  
+**ORM** Prisma for schema modeling and type safety  
+**Deployment** Vercel and Render for global cloud hosting  
+**Tools** Git, Postman, and JWT for version control and security
 
 ---
 
-## Database Setup
+## Features
 
-### Prisma Schema
+### Customer Experience
 
-```prisma
-model Product {
-  id          Int     @id @default(autoincrement())
-  name        String
-  price       Float
-  description String
-  image       String?
-  category    String
-  inStock     Boolean @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-```
+* **Instant Browse** A quick loading gallery of protein flavors and variations
+* **Nutritional Info** A detailed breakdown of protein, BCAAs, and calories for every serving
+* **Smart Cart** Easy add to cart functionality with real time price updates
+* **One Click Checkout** A simplified process for athletes on the go
+* **Order Tracking** Basic status updates for every placed order
 
-### Initial Setup
+### Admin Capabilities
 
-```bash
-# Install dependencies
-npm install
-
-# Generate Prisma client
-npx prisma generate
-
-# Run migrations
-npx prisma migrate dev --name init
-
-# (Optional) Seed database
-npx prisma db seed
-```
+* **Inventory Control** Full ability to add, edit, or remove protein stock
+* **Stock Status** Automatic labels that show when a product is out of stock
+* **API Security** Protected routes to ensure only admins can manage inventory
+* **Data Analytics** Insights into which protein flavors are the most popular
 
 ---
 
 ## Project Structure
 
-```
-FATAFAT-CHAI/
-│
-├── client/                     # React Frontend (Vercel)
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── App.test.jsx
-│   │   ├── main.jsx
-│   │   ├── index.css
-│   │   └── setupTests.js
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/                     # Node.js Backend (Render)
-│   ├── src/
-│   │   ├── app.js             # Express configuration
-│   │   └── index.js           # Server entry point
-│   ├── tests/
-│   │   └── app.test.js
-│   └── package.json
-│
-├── .env                        # Environment variables
-├── render.yaml                 # Render deployment config
-├── Idea.md                     # Project ideation
-└── README.md                   # This file
-```
+**VOLT PROTEIN** * **client** React and Vite Frontend  
+* **server** Node.js and Express Backend  
+* **prisma** Data modeling and schema  
+* **env** Environment variables and secrets  
 
 ---
 
-## Getting Started Locally
+## Database Schema
 
-### Prerequisites
-
-- Node.js v16+ and npm
-- Git
-- Code editor (VS Code recommended)
-
-### Clone & Setup
-
-```bash
-git clone https://github.com/your-username/FATAFAT-CHAI.git
-cd FATAFAT-CHAI
-```
-
-### Backend Setup
-
-```bash
-cd server
-npm install
-
-# Create .env file
-echo 'PORT=5000
-DATABASE_URL="file:./dev.db"
-NODE_ENV=development' > .env
-
-# Setup database
-npx prisma migrate dev --name init
-
-# Start backend
-npm start
-# Runs on http://localhost:5000
-```
-
-### Frontend Setup
-
-```bash
-cd ../client
-npm install
-npm run dev
-# Runs on http://localhost:5173
-```
-
-### Verify Everything Works
-
-- Backend API: `http://localhost:5000/api/products`
-- Frontend: `http://localhost:5173`
-- You should see the chai products loaded!
+The database tracks essential product details including the name, protein content per serving, price, flavor, and stock availability. This ensures that the frontend always displays accurate information to the customer.
 
 ---
 
-## Production Deployment
+## Getting Started
 
-### Frontend on Vercel
-
-1. Push code to GitHub
-2. Connect GitHub repo to Vercel
-3. Set build command: `npm run build`
-4. Set start command: `npm run dev`
-5. Deploy automatically on every push
-
-**Frontend URL:** `https://your-app.vercel.app`
-
-### Backend on Render
-
-1. Create Render account and connect GitHub
-2. Create new Web Service
-3. Build command: `npm install`
-4. Start command: `node src/index.js`
-5. Add environment variables in Render dashboard:
-   - `DATABASE_URL="file:./dev.db"`
-   - `NODE_ENV=production`
-
-**Backend URL:** `https://your-app.onrender.com`
-
-### CORS Configuration
-
-After deployment, update CORS settings in backend:
-
-```javascript
-const cors = require("cors");
-
-app.use(cors({
-  origin: "https://your-app.vercel.app",
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-}));
-```
-
----
-
-## Testing
-
-### Backend Tests
-
-```bash
-cd server
-npm test
-```
-
-### Frontend Tests
-
-```bash
-cd client
-npm test
-```
-
----
-
-## Learning Outcomes
-
-This project covers essential full-stack development concepts:
-
-- ✅ **REST API Design** - Understanding HTTP methods, status codes, and RESTful principles
-- ✅ **Database Design** - Schema design, relationships, and data normalization with SQLite
-- ✅ **ORM Usage** - Type-safe database queries with Prisma
-- ✅ **React Fundamentals** - Components, hooks, state management, and routing
-- ✅ **Express.js** - Middleware, routing, error handling, and middleware chaining
-- ✅ **Authentication Concepts** - Environment variables and secure configuration
-- ✅ **Cloud Deployment** - Hosting applications on modern platforms
-- ✅ **CORS & Security** - Cross-origin requests and security best practices
-- ✅ **Git Workflow** - Version control, branching, and collaboration
+To run this project locally, clone the repository and install the dependencies for both the server and the client. After setting up your environment variables, use Prisma to migrate your database and start the development servers. This will allow you to view the store at your local host address.
 
 ---
 
 ## Future Enhancements
 
-- 🔐 User authentication with JWT
-- 💳 Payment gateway integration (Razorpay/Stripe)
-- 📦 Order management and tracking
-- ⭐ Product reviews and ratings
-- 🐳 Docker containerization
-- 🔄 CI/CD pipeline with GitHub Actions
-- 📊 Admin dashboard with analytics
-- 🔔 Email notifications
+* **User Profiles** To save fitness goals and order history
+* **Payment Gateway** Integration with Razorpay for real time payments
+* **Stack Builder** Personalized supplement suggestions based on workout types
+* **Subscription Models** Automated weekly or monthly protein deliveries
 
 ---
 
-##  Developer
+## Developer
 
-**Kumar Gautam**  
-Full Stack & DevOps Developer
-
----
-
+**Kumar Gautam** Full Stack Developer
