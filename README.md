@@ -1,4 +1,4 @@
-# 🫖 FATAFAT CHAI
+#  FATAFAT CHAI
 
 **Instant Indian Chai – From Click to Cup**
 
@@ -8,7 +8,7 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-## 🎯 Project Overview
+##  Project Overview
 
 **Type:** Full-Stack E-Commerce Application with DevOps Deployment  
 **Duration:** College Project  
@@ -26,7 +26,7 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-## 🏗️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
@@ -39,16 +39,16 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-## ✨ Features
+##  Features
 
-### 🛍️ Customer Features
+###  Customer Features
 - **Browse Products** - View all available chai products with descriptions
 - **Product Details** - Check detailed information, pricing, and ratings
 - **Shopping Cart** - Add/remove items and manage quantities
 - **Checkout** - Complete order placement with validation
 - **Responsive Design** - Works on desktop, tablet, and mobile
 
-### ⚙️ Admin / Backend Features
+###  Admin / Backend Features
 - **Product Management** - Full CRUD operations for chai inventory
 - **Order Management** - Track and manage customer orders
 - **RESTful API** - Well-documented API endpoints for integration
@@ -57,7 +57,7 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 ### Products CRUD API
 
@@ -73,7 +73,7 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-## 🗄️ Database Setup
+##  Database Setup
 
 ### Prisma Schema
 
@@ -109,7 +109,7 @@ npx prisma db seed
 
 ---
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 FATAFAT-CHAI/
@@ -141,7 +141,7 @@ FATAFAT-CHAI/
 
 ---
 
-## 🚀 Getting Started Locally
+##  Getting Started Locally
 
 ### Prerequisites
 
@@ -149,14 +149,14 @@ FATAFAT-CHAI/
 - Git
 - Code editor (VS Code recommended)
 
-### 1️⃣ Clone & Setup
+### Clone & Setup
 
 ```bash
 git clone https://github.com/your-username/FATAFAT-CHAI.git
 cd FATAFAT-CHAI
 ```
 
-### 2️⃣ Backend Setup
+###  Backend Setup
 
 ```bash
 cd server
@@ -175,7 +175,7 @@ npm start
 # Runs on http://localhost:5000
 ```
 
-### 3️⃣ Frontend Setup
+###  Frontend Setup
 
 ```bash
 cd ../client
@@ -184,7 +184,7 @@ npm run dev
 # Runs on http://localhost:5173
 ```
 
-### ✅ Verify Everything Works
+### Verify Everything Works
 
 - Backend API: `http://localhost:5000/api/products`
 - Frontend: `http://localhost:5173`
@@ -192,7 +192,7 @@ npm run dev
 
 ---
 
-## 🌐 Production Deployment
+## Production Deployment
 
 ### Frontend on Vercel
 
@@ -216,7 +216,7 @@ npm run dev
 
 **Backend URL:** `https://your-app.onrender.com`
 
-### 🔒 CORS Configuration
+###  CORS Configuration
 
 After deployment, update CORS settings in backend:
 
@@ -232,7 +232,7 @@ app.use(cors({
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### Backend Tests
 
@@ -250,7 +250,7 @@ npm test
 
 ---
 
-## 📚 Learning Outcomes
+##  Learning Outcomes
 
 This project covers essential full-stack development concepts:
 
@@ -266,33 +266,32 @@ This project covers essential full-stack development concepts:
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
-- 🔐 User authentication with JWT
-- 💳 Payment gateway integration (Razorpay/Stripe)
-- 📦 Order management and tracking
-- ⭐ Product reviews and ratings
-- 🐳 Docker containerization
-- 🔄 CI/CD pipeline with GitHub Actions
-- 📊 Admin dashboard with analytics
-- 🔔 Email notifications
+-  User authentication with JWT
+-  Payment gateway integration (Razorpay/Stripe)
+-  Order management and tracking
+-  Product reviews and ratings
+-  Docker containerization
+-  CI/CD pipeline with GitHub Actions
+-  Admin dashboard with analytics
+-  Email notifications
 
 ---
 
-## 👨‍💻 Developer
+##  Developer
 
-**Gautam Kumar Jha**  
+**Gautam Jha**  
 Full Stack & DevOps Developer
 
 ---
 
-## 📄 License
+## License
 
 This project is developed strictly for **educational and academic purposes** as part of college coursework.
 
 ---
 
-**Made with ❤️ for chai lovers worldwide**
 
 ## API Endpoints
 - POST /api/auth/login
