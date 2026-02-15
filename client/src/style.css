@@ -166,4 +166,4 @@ nav a:hover::after {
   background: #8c7b6c;
   border-radius: 10px;
   border: 2px solid #f0e6d2;
-}
+}@media (max-width: 768px) { .container { padding: 1rem; } }
