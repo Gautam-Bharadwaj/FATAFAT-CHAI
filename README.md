@@ -1,4 +1,4 @@
-#  FATAFAT CHAI
+# FATAFAT CHAI
 
 **Instant Indian Chai – From Click to Cup**
 
@@ -8,7 +8,7 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-##  Project Overview
+## Project Overview
 
 **Type:** Full-Stack E-Commerce Application with DevOps Deployment  
 **Duration:** College Project  
@@ -16,17 +16,17 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ### Key Learning Objectives
 
-- ✅ Build a functional, production-ready e-commerce platform
-- ✅ Design and implement RESTful APIs with proper CRUD operations
-- ✅ Master database design with SQLite and ORM (Prisma)
-- ✅ Handle cross-origin requests (CORS) after cloud deployment
-- ✅ Deploy full-stack applications on real hosting platforms
-- ✅ Manage environment variables and sensitive data securely
-- ✅ Implement version control with Git and GitHub
+- Build a functional, production-ready e-commerce platform
+- Design and implement RESTful APIs with proper CRUD operations
+- Master database design with SQLite and ORM (Prisma)
+- Handle cross-origin requests (CORS) after cloud deployment
+- Deploy full-stack applications on real hosting platforms
+- Manage environment variables and sensitive data securely
+- Implement version control with Git and GitHub
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
@@ -39,16 +39,16 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-##  Features
+## Features
 
-###  Customer Features
+### Customer Features
 - **Browse Products** - View all available chai products with descriptions
 - **Product Details** - Check detailed information, pricing, and ratings
 - **Shopping Cart** - Add/remove items and manage quantities
 - **Checkout** - Complete order placement with validation
 - **Responsive Design** - Works on desktop, tablet, and mobile
 
-###  Admin / Backend Features
+### Admin / Backend Features
 - **Product Management** - Full CRUD operations for chai inventory
 - **Order Management** - Track and manage customer orders
 - **RESTful API** - Well-documented API endpoints for integration
@@ -57,7 +57,7 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-##  API Endpoints
+## API Endpoints
 
 ### Products CRUD API
 
@@ -73,7 +73,7 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-##  Database Setup
+## Database Setup
 
 ### Prisma Schema
 
@@ -109,7 +109,7 @@ npx prisma db seed
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```
 FATAFAT-CHAI/
@@ -141,7 +141,7 @@ FATAFAT-CHAI/
 
 ---
 
-##  Getting Started Locally
+## Getting Started Locally
 
 ### Prerequisites
 
@@ -149,14 +149,14 @@ FATAFAT-CHAI/
 - Git
 - Code editor (VS Code recommended)
 
-### Clone & Setup
+### 1. Clone & Setup
 
 ```bash
 git clone https://github.com/your-username/FATAFAT-CHAI.git
 cd FATAFAT-CHAI
 ```
 
-###  Backend Setup
+### 2. Backend Setup
 
 ```bash
 cd server
@@ -175,7 +175,7 @@ npm start
 # Runs on http://localhost:5000
 ```
 
-###  Frontend Setup
+### 3. Frontend Setup
 
 ```bash
 cd ../client
@@ -216,7 +216,7 @@ npm run dev
 
 **Backend URL:** `https://your-app.onrender.com`
 
-###  CORS Configuration
+### CORS Configuration
 
 After deployment, update CORS settings in backend:
 
@@ -232,7 +232,7 @@ app.use(cors({
 
 ---
 
-##  Testing
+## Testing
 
 ### Backend Tests
 
@@ -250,38 +250,38 @@ npm test
 
 ---
 
-##  Learning Outcomes
+## Learning Outcomes
 
 This project covers essential full-stack development concepts:
 
-- ✅ **REST API Design** - Understanding HTTP methods, status codes, and RESTful principles
-- ✅ **Database Design** - Schema design, relationships, and data normalization with SQLite
-- ✅ **ORM Usage** - Type-safe database queries with Prisma
-- ✅ **React Fundamentals** - Components, hooks, state management, and routing
-- ✅ **Express.js** - Middleware, routing, error handling, and middleware chaining
-- ✅ **Authentication Concepts** - Environment variables and secure configuration
-- ✅ **Cloud Deployment** - Hosting applications on modern platforms
-- ✅ **CORS & Security** - Cross-origin requests and security best practices
-- ✅ **Git Workflow** - Version control, branching, and collaboration
+- **REST API Design** - Understanding HTTP methods, status codes, and RESTful principles
+- **Database Design** - Schema design, relationships, and data normalization with SQLite
+- **ORM Usage** - Type-safe database queries with Prisma
+- **React Fundamentals** - Components, hooks, state management, and routing
+- **Express.js** - Middleware, routing, error handling, and middleware chaining
+- **Authentication Concepts** - Environment variables and secure configuration
+- **Cloud Deployment** - Hosting applications on modern platforms
+- **CORS & Security** - Cross-origin requests and security best practices
+- **Git Workflow** - Version control, branching, and collaboration
 
 ---
 
-##  Future Enhancements
+## Future Enhancements
 
--  User authentication with JWT
--  Payment gateway integration (Razorpay/Stripe)
--  Order management and tracking
--  Product reviews and ratings
--  Docker containerization
--  CI/CD pipeline with GitHub Actions
--  Admin dashboard with analytics
--  Email notifications
+- User authentication with JWT
+- Payment gateway integration (Razorpay/Stripe)
+- Order management and tracking
+- Product reviews and ratings
+- Docker containerization
+- CI/CD pipeline with GitHub Actions
+- Admin dashboard with analytics
+- Email notifications
 
 ---
 
-##  Developer
+## Developer
 
-**Gautam Jha**  
+**Gautam Kumar Jha**  
 Full Stack & DevOps Developer
 
 ---
@@ -292,6 +292,7 @@ This project is developed strictly for **educational and academic purposes** as 
 
 ---
 
+**Made with love for chai lovers worldwide**
 
 ## API Endpoints
 - POST /api/auth/login
