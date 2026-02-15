@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatafat Chai | Hand-Crafted Flavor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Indie+Flower&family=Patrick+Hand&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="antialiased opacity-0 transition-opacity duration-700 ease-in"
+  onload="document.body.classList.remove('opacity-0')">
+
+  <!-- Navigation -->
+  <header id="navbar" class="fixed top-0 left-0 w-full z-50 py-4 transition-all duration-300">
+    <div class="container mx-auto px-6 flex items-center justify-between">
+      <a href="#" class="text-4xl font-bold tracking-wider text-amber-700" style="font-family: 'Amatic SC', cursive;">
+        फटाफट <span class="text-orange-600">चाय</span>
+      </a>
+
+      <nav class="hidden md:flex space-x-12 items-center">
+        <a href="#hero" class="text-lg hover:text-orange-600 transition-colors">Home</a>
+        <a href="#shop" class="text-lg hover:text-orange-600 transition-colors">Our Blends</a>
+        <a href="#story" class="text-lg hover:text-orange-600 transition-colors">Story</a>
+        <a href="#shop" class="text-lg hover:text-orange-600 transition-colors">Shop</a>
+      </nav>
+
+      <a href="#shop" class="hidden md:inline-block sketch-btn text-sm font-bold tracking-wider hover:scale-105">
+        Shop Now
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-amber-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          class="w-8 h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+      <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Text Content -->
+        <div class="order-2 lg:order-1 text-center lg:text-left z-10">
+          <h2 class="text-3xl md:text-5xl font-['Patrick_Hand'] text-stone-500 mb-2 transform -rotate-1">Experience
+            Authentic Flavor</h2>
+          <h1 class="text-7xl md:text-9xl font-['Amatic_SC'] font-bold text-amber-900 leading-none mb-6 drop-shadow-sm">
+            The Soul of<br />
+            <span class="text-orange-700">India's Streets</span>
+          </h1>
+          <p
+            class="text-xl md:text-2xl text-stone-700 mb-8 font-['Indie_Flower'] max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Hand-picked spices, premium Assam tea, and the warmth of a hundred suns. Brewed in seconds, savored for
+            hours.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+            <a href="#shop" class="sketch-btn bg-white/50 backdrop-blur-sm animate-scribble">
+              Browse Chai Blends
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Illustration -->
+        <div class="order-1 lg:order-2 relative select-none pointer-events-none">
+          <div class="absolute inset-0 bg-orange-200 blur-[80px] opacity-20 rounded-full"></div>
+          <img src="/assets/chai-vendor.png" alt="Chai Vendor Illustration"
+            class="relative w-full max-w-2xl mx-auto drop-shadow-xl transform hover:scale-[1.01] transition-transform duration-700 mask-image-fade"
+            style="-webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%); mask-image: radial-gradient(circle at center, black 60%, transparent 100%);">
+        </div>
+
+      </div>
+
+      <!-- Decorative Elements -->
+      <div class="absolute top-1/4 left-10 text-6xl opacity-20 rotate-12 select-none pointer-events-none">✨</div>
+      <div class="absolute bottom-10 right-10 text-6xl opacity-20 -rotate-12 select-none pointer-events-none">🌿</div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section id="shop" class="section-padding relative">
+      <div class="text-center mb-20">
+        <h2 class="text-6xl font-black text-amber-900 mb-4 font-['Amatic_SC']">Our Blends</h2>
+        <div class="h-1 w-24 bg-amber-600 mx-auto rounded-full opacity-60"></div>
+      </div>
+
+      <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-6">
+
+        <!-- Product 1 -->
+        <div class="sketch-box bg-white/60 relative group">
+          <div class="h-48 flex items-center justify-center mb-6 overflow-hidden rounded-lg">
+            <!-- Using the ingredients image as placeholder for now, ideally strictly product images -->
+            <img src="/assets/chai-ingredients.png" alt="Masala Chai"
+              class="h-full object-contain filter sepia-[.3] group-hover:sepia-0 transition-all duration-500 transform group-hover:scale-110">
+          </div>
+          <h3 class="text-4xl font-bold font-['Amatic_SC'] text-amber-900 mb-2">Masala Chai</h3>
+          <p class="text-stone-600 mb-6 text-lg leading-snug">The classic 7-spice blend. Ginger, cardamom, and clove
+            dance in a cup of strong Assam tea.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-bold text-orange-800">₹450</span>
+            <button class="sketch-btn text-sm py-2 px-6">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="sketch-box bg-white/60 relative group mt-8 md:mt-0">
+          <div
+            class="absolute -top-4 -right-4 bg-orange-600 text-white font-bold py-1 px-4 transform rotate-12 rounded-sm font-['Patrick_Hand'] shadow-md z-10">
+            Bestseller</div>
+          <div class="h-48 flex items-center justify-center mb-6 overflow-hidden rounded-lg">
+            <img src="/assets/chai-ingredients.png" alt="Elaichi Chai"
+              class="h-full object-contain filter sepia-[.3] group-hover:sepia-0 transition-all duration-500 transform group-hover:scale-110 hue-rotate-15">
+          </div>
+          <h3 class="text-4xl font-bold font-['Amatic_SC'] text-amber-900 mb-2">Elaichi Chai</h3>
+          <p class="text-stone-600 mb-6 text-lg leading-snug">Pure, aromatic green cardamom. Sweet, floral, and
+            incredibly refreshing.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-bold text-orange-800">₹450</span>
+            <button class="sketch-btn text-sm py-2 px-6">Add to Cart</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="sketch-box bg-white/60 relative group">
+          <div class="h-48 flex items-center justify-center mb-6 overflow-hidden rounded-lg">
+            <img src="/assets/chai-ingredients.png" alt="Ginger Chai"
+              class="h-full object-contain filter sepia-[.3] group-hover:sepia-0 transition-all duration-500 transform group-hover:scale-110 hue-rotate-30">
+          </div>
+          <h3 class="text-4xl font-bold font-['Amatic_SC'] text-amber-900 mb-2">Adrak Chai</h3>
+          <p class="text-stone-600 mb-6 text-lg leading-snug">Fresh ginger root extract for that perfect morning kick.
+            Spicy and invigorating.</p>
+          <div class="flex items-center justify-between">
+            <span class="text-2xl font-bold text-orange-800">₹420</span>
+            <button class="sketch-btn text-sm py-2 px-6">Add to Cart</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Story / Features Section -->
+    <section id="story" class="py-24 relative overflow-hidden">
+      <!-- Background splash -->
+      <div class="absolute top-0 right-0 w-1/2 h-full bg-orange-100/30 -skew-x-12 transform translate-x-1/4 -z-10">
+      </div>
+
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div class="relative">
+            <div
+              class="absolute -inset-4 border-2 border-dashed border-stone-400 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] animate-pulse opacity-50">
+            </div>
+            <img src="/assets/chai-ingredients.png"
+              class="w-full drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500"
+              alt="Ingredients">
+          </div>
+
+          <div>
+            <span class="text-orange-600 font-bold tracking-widest uppercase mb-2 block font-['Patrick_Hand']">Farm to
+              Cup</span>
+            <h2 class="text-5xl md:text-7xl font-bold text-amber-900 mb-6 font-['Amatic_SC']">Pure Ingredients,
+              <br />Zero Nonsense.
+            </h2>
+            <p class="text-xl text-stone-700 leading-relaxed mb-6">
+              We don't use "flavorings". We use the real thing. Hand-ground spices, premium tea leaves from the valleys
+              of Assam, and absolutely nothing artificial.
+            </p>
+
+            <ul class="space-y-4 text-lg font-bold text-stone-600">
+              <li class="flex items-center gap-3">
+                <span class="text-orange-500 text-2xl">✓</span> Real Spices
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="text-orange-500 text-2xl">✓</span> No Preservatives
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="text-orange-500 text-2xl">✓</span> Ready in 30 Seconds
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Stories -->
+    <section class="section-padding bg-black/5">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-5xl font-bold text-amber-900 mb-16 font-['Amatic_SC']">Chai Lovers Say</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Review 1 -->
+          <div class="bg-white p-8 shadow-sm relative pt-12 transform hover:-rotate-1 transition-transform duration-300"
+            style="border-radius: 2px 25px 5px 20px / 20px 5px 25px 5px; box-shadow: 5px 5px 0px rgba(0,0,0,0.05);">
+            <div
+              class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-2xl shadow-inner">
+              ❝</div>
+            <p class="text-stone-600 italic mb-4 text-lg">"Finally, a chai that tastes like home. The ginger hit is
+              real!"</p>
+            <h4 class="font-bold text-orange-800 font-['Patrick_Hand'] text-xl">- Priya S.</h4>
+          </div>
+
+          <!-- Review 2 -->
+          <div
+            class="bg-white p-8 shadow-sm relative pt-12 transform hover:rotate-1 transition-transform duration-300 mt-8 md:mt-0"
+            style="border-radius: 25px 5px 20px 2px / 5px 25px 2px 20px; box-shadow: 5px 5px 0px rgba(0,0,0,0.05);">
+            <div
+              class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-2xl shadow-inner">
+              ❝</div>
+            <p class="text-stone-600 italic mb-4 text-lg">"The packaging is beautiful and the taste is even better. Love
+              the Elaichi."</p>
+            <h4 class="font-bold text-orange-800 font-['Patrick_Hand'] text-xl">- Rahul M.</h4>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="bg-white p-8 shadow-sm relative pt-12 transform hover:-rotate-1 transition-transform duration-300"
+            style="border-radius: 5px 20px 2px 25px / 25px 2px 20px 5px; box-shadow: 5px 5px 0px rgba(0,0,0,0.05);">
+            <div
+              class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center text-2xl shadow-inner">
+              ❝</div>
+            <p class="text-stone-600 italic mb-4 text-lg">"Instant chai usually sucks. This one actually rocks. My
+              office staple now."</p>
+            <h4 class="font-bold text-orange-800 font-['Patrick_Hand'] text-xl">- Aman K.</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-800 text-stone-300 py-16 mt-12 relative overflow-hidden">
+      <!-- Texture overlay for footer to match theme -->
+      <div class="absolute inset-0 opacity-10 bg-[url('/assets/bg-parchment.png')] mix-blend-overlay"></div>
+
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+        <div class="col-span-1 md:col-span-2">
+          <h2 class="text-5xl font-bold text-amber-50 mb-4 font-['Amatic_SC']">Fatafat Chai</h2>
+          <p class="text-stone-400 max-w-sm text-lg">Brewing stories, one cup at a time. Join us on a journey of flavor,
+            tradition, and warmth.</p>
+        </div>
+
+        <div>
+          <h4 class="text-xl font-bold text-amber-100 mb-6 font-['Patrick_Hand']">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="hover:text-orange-400 transition-colors">Shop All</a></li>
+            <li><a href="#" class="hover:text-orange-400 transition-colors">Our Story</a></li>
+            <li><a href="#" class="hover:text-orange-400 transition-colors">Wholesale</a></li>
+            <li><a href="#" class="hover:text-orange-400 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xl font-bold text-amber-100 mb-6 font-['Patrick_Hand']">Stay Updated</h4>
+          <form class="flex border-b border-stone-600 pb-2">
+            <input type="email" placeholder="Email Address"
+              class="bg-transparent w-full outline-none text-stone-100 placeholder-stone-500 font-['Indie_Flower'] text-lg">
+            <button class="text-orange-500 hover:text-orange-400 font-bold">→</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 pt-8 border-t border-stone-700 text-stone-500 text-sm relative z-10">
+        © 2024 Fatafat Chai. Hand-coded with ❤️
+      </div>
+    </footer>
+
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

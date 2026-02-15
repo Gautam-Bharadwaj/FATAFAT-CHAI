@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-color: #f8f5e6;
+  --text-color: #4a3b2a;
+  --accent-color: #d97706;
+  /* Burnt Orange */
+  --sketch-color: #8c7b6c;
+  /* Pencil Gray */
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: url('/assets/bg-parchment.png');
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--text-color);
+  font-family: 'Indie Flower', cursive;
+  /* Handwritten font */
+  overflow-x: hidden;
+  cursor: auto;
+  /* Reverting custom cursor for now unless requested */
+}
+
+/* Typography Overrides */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Glassmorphism replaced with Sketch Style */
+.sketch-box {
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid var(--sketch-color);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  /* Irregular border */
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.sketch-box:hover {
+  transform: scale(1.02) rotate(-1deg);
+  box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sketch-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border: 2px solid var(--text-color);
+  background: transparent;
+  color: var(--text-color);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sketch-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-color);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  opacity: 0.2;
+}
+
+.sketch-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.sketch-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* Navigation - Hand Inked Look */
+nav a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-color);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.2rem;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+  border-radius: 50% 20% / 10% 40%;
+  /* Irregular line */
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Animations */
+@keyframes scribble {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(1deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(-1deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-scribble:hover {
+  animation: scribble 0.5s infinite linear;
+}
+
+/* Utility */
+.section-padding {
+  @apply py-20 px-6 md:px-12 lg:px-24;
+}
+
+/* Custom Scrollbar to match vintage feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0e6d2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8c7b6c;
+  border-radius: 10px;
+  border: 2px solid #f0e6d2;
+}@media (max-width: 768px) { .container { padding: 1rem; } }
