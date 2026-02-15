@@ -1,1 +1,2 @@
 :root { --primary-color: #d97706; --secondary-color: #4a3b2a; }
+.btn-primary { background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 5px; }
