@@ -1,90 +1,102 @@
-# VOLT High Voltage Nutrition
+# FATAFAT CHAI
 
-**Premium Protein Drinks From Click to Cup**
+**Instant Indian Chai – From Click to Cup**
 
-This is a high performance web platform designed for ordering premium protein shakes and fitness supplements. It was built using the MERN stack to ensure the store is fast, reliable, and easy to scale.
+A full stack e commerce platform for ordering premium Indian chai online. Built with modern web technologies and deployed on cloud platforms.
 
-VOLT is a professional full stack development project that highlights the ability to create robust e commerce solutions, manage secure databases, and deploy applications to the cloud.
+FATAFAT CHAI is a college DevOps project that demonstrates practical expertise in full stack development, REST API design, database management, and cloud deployment. The application provides a seamless experience for browsing chai products, managing carts, and processing orders.
 
 ---
 
 ## Project Overview
 
-**Type** Full Stack Fitness E Commerce Application  
-**Brand Identity** High energy, minimalist, and performance driven  
+**Type** Full Stack E Commerce Application with DevOps Deployment  
+**Duration** College Project  
 **Hosting** Frontend on Vercel and Backend on Render
 
-### Learning Objectives
+### Key Learning Objectives
 
-* Build a high performance architecture using the MERN stack
-* Design a clean, mobile first interface for fitness enthusiasts
-* Manage type safe data using Prisma and SQLite
-* Optimize API response times for a fast user experience
-* Securely manage user data and environment configurations
-* Deploy a production ready store with a professional workflow
+* Build a functional production ready e commerce platform
+* Design and implement RESTful APIs with proper CRUD operations
+* Master database design with SQLite and Prisma ORM
+* Handle cross origin requests after cloud deployment
+* Deploy full stack applications on real hosting platforms
+* Manage environment variables and sensitive data securely
+* Implement version control with Git and GitHub
 
 ---
 
 ## Tech Stack
 
-**Frontend** React.js, Vite, and Tailwind CSS for a modern and responsive interface  
-**Backend** Node.js and Express.js for scalable API logic and order processing  
-**Database** SQLite3 for reliable and lightweight data storage  
-**ORM** Prisma for schema modeling and type safety  
-**Deployment** Vercel and Render for global cloud hosting  
-**Tools** Git, Postman, and JWT for version control and security
+**Frontend** React.js, Vite, HTML5, and CSS3 for an interactive user interface  
+**Backend** Node.js and Express.js for the API server and business logic  
+**Database** SQLite3 for lightweight data storage  
+**ORM** Prisma for type safe database operations  
+**Deployment** Vercel for the frontend and Render for the backend  
+**DevOps** Git, GitHub, and environment variables for version control
 
 ---
 
 ## Features
 
-### Customer Experience
+### Customer Features
+* **Browse Products** View all available chai products with descriptions
+* **Product Details** Check detailed information, pricing, and ratings
+* **Shopping Cart** Add or remove items and manage quantities
+* **Checkout** Complete order placement with validation
+* **Responsive Design** Works on desktop, tablet, and mobile
 
-* **Instant Browse** A quick loading gallery of protein flavors and variations
-* **Nutritional Info** A detailed breakdown of protein, BCAAs, and calories for every serving
-* **Smart Cart** Easy add to cart functionality with real time price updates
-* **One Click Checkout** A simplified process for athletes on the go
-* **Order Tracking** Basic status updates for every placed order
-
-### Admin Capabilities
-
-* **Inventory Control** Full ability to add, edit, or remove protein stock
-* **Stock Status** Automatic labels that show when a product is out of stock
-* **API Security** Protected routes to ensure only admins can manage inventory
-* **Data Analytics** Insights into which protein flavors are the most popular
+### Admin and Backend Features
+* **Product Management** Full CRUD operations for chai inventory
+* **Order Management** Track and manage customer orders
+* **RESTful API** Well documented API endpoints for integration
+* **Database Operations** Efficient queries using Prisma ORM
+* **Error Handling** Comprehensive error responses and logging
 
 ---
 
 ## Project Structure
 
-**VOLT PROTEIN** * **client** React and Vite Frontend  
-* **server** Node.js and Express Backend  
-* **prisma** Data modeling and schema  
-* **env** Environment variables and secrets  
+**FATAFAT CHAI**
+* **client** React Frontend hosted on Vercel
+* **server** Node.js Backend hosted on Render
+* **prisma** Database schema and migrations
+* **env** Configuration for environment variables
+* **Idea md** Project ideation and planning notes
 
 ---
 
-## Database Schema
+## Getting Started Locally
 
-The database tracks essential product details including the name, protein content per serving, price, flavor, and stock availability. This ensures that the frontend always displays accurate information to the customer.
+To run this project on your local machine, clone the repository and install the dependencies for both the server and the client folders. You will need to set up a local environment file with your port and database URL. Once the Prisma client is generated and migrations are run, you can start the backend and frontend servers to view the application in your browser.
 
 ---
 
-## Getting Started
+## Learning Outcomes
 
-To run this project locally, clone the repository and install the dependencies for both the server and the client. After setting up your environment variables, use Prisma to migrate your database and start the development servers. This will allow you to view the store at your local host address.
+This project covers several essential full stack development concepts:
+
+* **REST API Design** Understanding HTTP methods and status codes
+* **Database Design** Schema design and data normalization with SQLite
+* **ORM Usage** Performing type safe queries with Prisma
+* **React Fundamentals** Managing components, hooks, and routing
+* **Express.js** Working with middleware and error handling
+* **Cloud Deployment** Hosting applications on modern cloud platforms
+* **Security** Managing environment variables and CORS settings
 
 ---
 
 ## Future Enhancements
 
-* **User Profiles** To save fitness goals and order history
-* **Payment Gateway** Integration with Razorpay for real time payments
-* **Stack Builder** Personalized supplement suggestions based on workout types
-* **Subscription Models** Automated weekly or monthly protein deliveries
+* User authentication with JWT
+* Payment gateway integration
+* Order management and tracking
+* Product reviews and ratings
+* Docker containerization
+* CI CD pipeline with GitHub Actions
 
 ---
 
 ## Developer
 
-**Kumar Gautam** Full Stack Developer
+**Kumar Gautam** Full Stack and DevOps Developer
