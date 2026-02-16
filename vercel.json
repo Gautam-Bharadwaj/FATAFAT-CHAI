@@ -1,12 +1,10 @@
 {
+    "version": 2,
+    "outputDirectory": "client/dist",
     "rewrites": [
         {
-            "source": "/",
-            "destination": "/client/dist/index.html"
-        },
-        {
             "source": "/(.*)",
-            "destination": "/client/dist/$1"
+            "destination": "/index.html"
         }
     ]
 }
