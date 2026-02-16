@@ -211,3 +211,40 @@ nav a:hover::after {
     padding: 1rem;
   }
 }
+
+/* Marquee Animation (Train Effect - Seamless) */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+  flex-shrink: 0;
+  padding-right: 2rem;
+  /* Spacing between loops */
+}
+
+/* Ensure the parent hides overflow */
+.marquee-container {
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%);
+  background-color: #dc2626;
+  /* red-600 */
+  color: white;
+  padding: 0.25rem 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+}
