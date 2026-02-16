@@ -196,9 +196,53 @@ baseOptions.forEach(btn => {
     });
 });
 
+// Web Audio API Context
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+// Pentatonic Scale (C Major) for harmonious sounds
+const spiceNotes = {
+    'Ginger': 523.25,   // C5
+    'Cardamom': 587.33, // D5
+    'Tulsi': 659.25,    // E5
+    'Cinnamon': 783.99, // G5
+    'Pepper': 880.00,   // A5
+    'Clove': 1046.50,   // C6
+    'Fennel': 1174.66   // D6
+};
+
+function playPianoSound(frequency) {
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+
+    const t = audioCtx.currentTime;
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    // Use Triangle wave for a softer, more instrument-like tone (closer to piano/flute)
+    oscillator.type = 'triangle';
+    oscillator.frequency.setValueAtTime(frequency, t);
+
+    // Piano Envelope: Fast attack, quick decay to sustain, then fade
+    gainNode.gain.setValueAtTime(0, t);
+    gainNode.gain.linearRampToValueAtTime(0.3, t + 0.02); // Attack
+    gainNode.gain.exponentialRampToValueAtTime(0.01, t + 1.0); // Long smooth decay
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.start(t);
+    oscillator.stop(t + 1.0);
+}
+
 spiceBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         const spice = btn.dataset.name;
+
+        // Play distinct piano note for each spice
+        if (spiceNotes[spice]) {
+            playPianoSound(spiceNotes[spice]);
+        }
 
         if (selectedSpices.includes(spice)) {
             selectedSpices = selectedSpices.filter(s => s !== spice);
