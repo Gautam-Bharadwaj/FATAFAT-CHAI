@@ -166,4 +166,48 @@ nav a:hover::after {
   background: #8c7b6c;
   border-radius: 10px;
   border: 2px solid #f0e6d2;
-}@media (max-width: 768px) { .container { padding: 1rem; } }
+}
+
+/* Custom Chai Styles Refined */
+.spice-btn .w-16,
+.spice-btn .w-20 {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.spice-btn.active .w-16,
+.spice-btn.active .w-20 {
+  transform: scale(1.05);
+  border-color: #d97706;
+  /* orange-600 */
+}
+
+@keyframes bounce-x {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-bounce-x {
+  animation: bounce-x 1s infinite;
+}
+
+.base-option {
+  transition: all 0.2s ease;
+}
+
+.base-option:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+}

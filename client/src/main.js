@@ -1,15 +1,44 @@
 import './style.css'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Lenis from 'lenis'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
 
+// --- Lenis Smooth Scroll Setup ---
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: 'vertical',
+    gestureDirection: 'vertical',
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: false,
+    touchMultiplier: 2,
+})
+
+function raf(time) {
+    lenis.raf(time)
+    requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)
+
+// Integrate Lenis with ScrollTrigger
+lenis.on('scroll', ScrollTrigger.update)
+
+gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+})
+
+gsap.ticker.lagSmoothing(0)
+
 // --- Navbar Blur Effect on Scroll ---
 const navbar = document.getElementById('navbar');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+lenis.on('scroll', ({ scroll }) => {
+    if (scroll > 50) {
         navbar.classList.add('bg-[#f8f5e6]/80', 'backdrop-blur-md', 'shadow-sm', 'py-2');
         navbar.classList.remove('py-4');
     } else {
@@ -76,10 +105,116 @@ gsap.fromTo('#story div:last-child > *',
         stagger: 0.1,
         duration: 0.8,
         scrollTrigger: {
-            trigger: '#story ml-auto', // targeting loosely
+            trigger: '#story',
             start: 'top 70%'
         }
     }
 );
+
+// Custom Chai Section Reveal
+gsap.fromTo('#custom-chai .container > *',
+    { y: 50, opacity: 0 },
+    {
+        y: 0,
+        opacity: 1,
+        stagger: 0.2,
+        duration: 1,
+        scrollTrigger: {
+            trigger: '#custom-chai',
+            start: 'top 70%'
+        }
+    }
+);
+
+// --- Custom Chai Logic ---
+const baseOptions = document.querySelectorAll('.base-option');
+const spiceSelection = document.getElementById('spice-selection');
+const spiceBtns = document.querySelectorAll('.spice-btn');
+const maxSpiceText = document.getElementById('max-spice-text');
+const addOnPriceDisplay = document.getElementById('add-on-price');
+const summaryPrice = document.getElementById('summary-price');
+
+let currentBase = 'plain';
+let selectedSpices = [];
+let maxSpices = 0;
+
+const basePrices = {
+    plain: 450,
+    one: 450,
+    two: 450
+};
+
+const addOnPrices = {
+    plain: 0,
+    one: 70,
+    two: 140
+};
+
+function updateSummary() {
+    const addOn = addOnPrices[currentBase];
+    const total = basePrices[currentBase] + (currentBase === 'plain' ? 0 : addOn);
+
+    if (addOnPriceDisplay) addOnPriceDisplay.textContent = `₹${currentBase === 'plain' ? 0 : addOn}`;
+    if (summaryPrice) summaryPrice.textContent = `₹${total}`;
+
+    // Update count in UI
+    const maxSpiceDisplay = document.getElementById('max-spice-text');
+    if (maxSpiceDisplay) maxSpiceDisplay.textContent = maxSpices;
+}
+
+baseOptions.forEach(btn => {
+    btn.addEventListener('click', () => {
+        baseOptions.forEach(b => {
+            b.classList.remove('active', 'border-orange-600', 'bg-orange-50', 'text-orange-900');
+            b.classList.add('border-stone-200', 'bg-white');
+        });
+        btn.classList.add('active', 'border-orange-600', 'bg-orange-50', 'text-orange-900');
+        btn.classList.remove('border-stone-200', 'bg-white');
+
+        currentBase = btn.dataset.type;
+
+        if (currentBase === 'plain') {
+            maxSpices = 0;
+            spiceSelection.classList.add('hidden');
+            selectedSpices = [];
+            spiceBtns.forEach(sb => sb.classList.remove('active'));
+        } else {
+            maxSpices = currentBase === 'one' ? 1 : 2;
+            spiceSelection.classList.remove('hidden');
+            // Trim if needed
+            if (selectedSpices.length > maxSpices) {
+                selectedSpices = selectedSpices.slice(0, maxSpices);
+                spiceBtns.forEach(sb => {
+                    if (!selectedSpices.includes(sb.dataset.name)) {
+                        sb.classList.remove('active');
+                    }
+                });
+            }
+        }
+
+        updateSummary();
+    });
+});
+
+spiceBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const spice = btn.dataset.name;
+
+        if (selectedSpices.includes(spice)) {
+            selectedSpices = selectedSpices.filter(s => s !== spice);
+            btn.classList.remove('active');
+        } else {
+            if (selectedSpices.length < maxSpices) {
+                selectedSpices.push(spice);
+                btn.classList.add('active');
+            } else if (maxSpices === 1) {
+                spiceBtns.forEach(sb => sb.classList.remove('active'));
+                selectedSpices = [spice];
+                btn.classList.add('active');
+            }
+        }
+        updateSummary();
+    });
+});
 
 console.log("Fatafat Chai Sketch Theme Initialized");
