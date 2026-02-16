@@ -1,44 +1,15 @@
 import './style.css'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Lenis from 'lenis'
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger)
 
-// --- Lenis Smooth Scroll Setup ---
-const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    direction: 'vertical',
-    gestureDirection: 'vertical',
-    smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
-})
-
-function raf(time) {
-    lenis.raf(time)
-    requestAnimationFrame(raf)
-}
-
-requestAnimationFrame(raf)
-
-// Integrate Lenis with ScrollTrigger
-lenis.on('scroll', ScrollTrigger.update)
-
-gsap.ticker.add((time) => {
-    lenis.raf(time * 1000)
-})
-
-gsap.ticker.lagSmoothing(0)
-
 // --- Navbar Blur Effect on Scroll ---
 const navbar = document.getElementById('navbar');
 
-lenis.on('scroll', ({ scroll }) => {
-    if (scroll > 50) {
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
         navbar.classList.add('bg-[#f8f5e6]/80', 'backdrop-blur-md', 'shadow-sm', 'py-2');
         navbar.classList.remove('py-4');
     } else {

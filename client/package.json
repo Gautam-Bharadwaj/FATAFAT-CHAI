@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "gsap": "^3.12.5",
-    "lenis": "^1.0.42"
+    "gsap": "^3.12.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
