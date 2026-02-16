@@ -34,6 +34,19 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0)
 
+// --- Navbar Blur Effect on Scroll ---
+const navbar = document.getElementById('navbar');
+
+lenis.on('scroll', ({ scroll }) => {
+    if (scroll > 50) {
+        navbar.classList.add('bg-[#f8f5e6]/80', 'backdrop-blur-md', 'shadow-sm', 'py-2');
+        navbar.classList.remove('py-4');
+    } else {
+        navbar.classList.remove('bg-[#f8f5e6]/80', 'backdrop-blur-md', 'shadow-sm', 'py-2');
+        navbar.classList.add('py-4');
+    }
+});
+
 // --- Sketch Theme Animations ---
 
 // Hero Animations
