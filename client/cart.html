@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart | Fatafat Chai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Indie+Flower&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="antialiased opacity-0 transition-opacity duration-700 ease-in"
+    onload="document.body.classList.remove('opacity-0')">
+
+    <!-- Navigation -->
+    <header id="navbar"
+        class="fixed top-0 left-0 w-full z-50 py-4 transition-all duration-300 bg-[#f8f5e6]/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="flex items-center group">
+                <span class="text-4xl md:text-5xl font-bold tracking-wider text-amber-900 leading-none"
+                    style="font-family: 'Amatic SC', cursive;">
+                    फटाफट <span class="text-orange-600">चाय</span>
+                </span>
+            </a>
+            <a href="index.html#shop"
+                class="text-lg hover:text-orange-600 transition-colors font-['Patrick_Hand'] border-b-2 border-transparent hover:border-orange-600">Continue
+                Shopping</a>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-24 min-h-screen">
+        <div class="container mx-auto px-6">
+            <h1 class="text-6xl font-black text-amber-900 mb-8 font-['Amatic_SC'] text-center">Your Cart</h1>
+
+            <div class="max-w-4xl mx-auto sketch-box bg-white/60 p-8 relative">
+                <!-- Decorative Pin -->
+                <div
+                    class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-red-800 rounded-full shadow-md z-20 border-2 border-white/50">
+                </div>
+
+                <div class="flex flex-col items-center justify-center py-8">
+                    <div class="w-full space-y-6 mb-12">
+                        <!-- Example Cart Item 1 -->
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-between p-4 bg-white/50 border border-stone-200 rounded-md shadow-sm transform hover:scale-[1.01] transition-transform">
+                            <div class="flex items-center gap-6">
+                                <div
+                                    class="w-24 h-24 bg-stone-100 rounded-lg overflow-hidden p-2 flex items-center justify-center">
+                                    <img src="/assets/masala-chai.png" alt="Masala Chai"
+                                        class="w-full h-full object-contain">
+                                </div>
+                                <div class="text-center sm:text-left">
+                                    <h3 class="text-3xl font-bold text-amber-900 font-['Amatic_SC']">Masala Chai</h3>
+                                    <p class="text-lg text-stone-500 font-['Patrick_Hand']">Premium Pack (400g)</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 sm:mt-0 text-3xl font-bold text-orange-800 font-['Amatic_SC']">₹450</div>
+                        </div>
+
+                        <!-- Example Cart Item 2 -->
+                        <div
+                            class="flex flex-col sm:flex-row items-center justify-between p-4 bg-white/50 border border-stone-200 rounded-md shadow-sm transform hover:scale-[1.01] transition-transform">
+                            <div class="flex items-center gap-6">
+                                <div
+                                    class="w-24 h-24 bg-stone-100 rounded-lg overflow-hidden p-2 flex items-center justify-center">
+                                    <img src="/assets/elaichi-chai.png" alt="Elaichi Chai"
+                                        class="w-full h-full object-contain">
+                                </div>
+                                <div class="text-center sm:text-left">
+                                    <h3 class="text-3xl font-bold text-amber-900 font-['Amatic_SC']">Elaichi Chai</h3>
+                                    <p class="text-lg text-stone-500 font-['Patrick_Hand']">Bestseller Pack (400g)</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 sm:mt-0 text-3xl font-bold text-orange-800 font-['Amatic_SC']">₹450</div>
+                        </div>
+                    </div>
+
+                    <!-- Summary Section -->
+                    <div class="w-full border-t-2 border-dashed border-stone-300 pt-8 mt-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xl font-['Patrick_Hand'] text-stone-600">Subtotal</span>
+                            <span class="text-2xl font-bold font-['Amatic_SC'] text-stone-800">₹900</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xl font-['Patrick_Hand'] text-stone-600">Shipping</span>
+                            <span class="text-xl font-['Patrick_Hand'] text-green-600">Free</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-8 pb-4 border-b border-stone-200">
+                            <span class="text-3xl font-bold font-['Amatic_SC'] text-amber-900">Total</span>
+                            <span class="text-5xl font-bold font-['Amatic_SC'] text-orange-700">₹900</span>
+                        </div>
+
+                        <div class="flex flex-col gap-4 w-full max-w-md mx-auto">
+                            <button
+                                class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-full shadow-lg transition-all transform hover:scale-[1.02] hover:rotate-1 text-2xl font-['Amatic_SC'] tracking-wider">
+                                Proceed to Checkout
+                            </button>
+                            <p class="text-center text-stone-400 font-['Patrick_Hand'] text-sm">Secure Payment • Fast
+                                Delivery</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-800 text-stone-300 py-12 mt-12 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('/assets/bg-parchment.png')] mix-blend-overlay"></div>
+        <div class="container mx-auto px-6 text-center relative z-10 flex flex-col gap-4">
+            <h2 class="text-4xl font-bold text-amber-50 font-['Amatic_SC']">Fatafat Chai</h2>
+            <p class="text-stone-500 text-sm font-['Indie_Flower'] tracking-wider">© 2024 Fatafat Chai. Made in India
+                🇮🇳</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
