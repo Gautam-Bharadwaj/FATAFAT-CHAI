@@ -286,14 +286,15 @@ Full Stack & DevOps Developer
 
 ---
 
-## License
+## 🛠️ DevOps & Infrastructure
+Is project mein **Fatafat Chai** ki scaling aur deployment ko automate kiya gaya hai.
+* **CI/CD:** GitHub Actions / Jenkins
+* **Containerization:** Docker & Kubernetes
+* **Monitoring:** [Prometheus/Grafana - agar use kiya ho toh]
 
-This project is developed strictly for **educational and academic purposes** as part of college coursework.
+## ⚖️ License
+**Copyright (c) 2026 Gautam Jha.**
+This project's automation logic and infrastructure scripts are **Proprietary**. 
+Unauthorised use or deployment of this configuration is strictly prohibited. 
+For permissions, contact the author.
 
----
-
-**Made with love for chai lovers worldwide**
-
-## API Endpoints
-- POST /api/auth/login
-- GET /api/products
