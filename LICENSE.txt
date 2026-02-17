@@ -1,0 +1,31 @@
+# PROPRIETARY LICENSE - FATAFAT CHAI 
+
+Copyright (c) 2026 Gautam Jha (Gautam-Bharadwaj)
+Project: Fatafat Chai (DevOps Infrastructure & Automation)
+
+---------------------------------------------------------------------------
+
+ALL RIGHTS RESERVED.
+
+This repository contains proprietary automation scripts, CI/CD pipeline 
+configurations (YAML), Dockerfiles, and infrastructure templates for the 
+'Fatafat Chai' project.
+
+1. RESTRICTIONS:
+   - You may NOT copy, redistribute, or use these DevOps configurations 
+     to deploy any commercial or personal service without explicit 
+     written permission from the author.
+   - You may NOT modify these scripts to build a competing service.
+
+2. PERMISSIONS:
+   - Permission is granted only for educational review and viewing on 
+     official platforms (GitHub).
+   - Any deployment of this infrastructure in a production or live 
+     environment requires a separate agreement.
+
+3. THIRD-PARTY TOOLS:
+   - This project uses tools like Docker, Jenkins/GitHub Actions, and 
+     other DevOps utilities. Their use in this project is governed by 
+     their respective Open Source licenses (MIT, Apache, etc.).
+
+For licensing inquiries: [kr.gautamjha03@gmail.com]
