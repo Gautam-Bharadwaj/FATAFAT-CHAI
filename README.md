@@ -298,3 +298,6 @@ This project's automation logic and infrastructure scripts are **Proprietary**.
 Unauthorised use or deployment of this configuration is strictly prohibited. 
 For permissions, contact the author.
 
+
+## New Features
+- Interactive Story Journey with Toy Train animation
