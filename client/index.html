@@ -211,47 +211,216 @@
       </div>
     </section>
 
-    <!-- Story / Features Section -->
-    <section id="story" class="py-24 relative overflow-hidden">
-      <!-- Background splash -->
-      <div class="absolute top-0 right-0 w-1/2 h-full bg-orange-100/30 -skew-x-12 transform translate-x-1/4 -z-10">
+    <!-- Story / Features Section (Gautam's Journey) -->
+    <section id="story" style="zoom: 0.85;" class="py-24 relative overflow-hidden bg-[#fdfbf7]">
+      <!-- Toy Train Track (Full Height) -->
+      <!-- Top-View Railway Track (Rails + Sleepers) -->
+      <!-- Premium Railway Track (Wooden Sleepers & Iron Rails) -->
+      <div id="train-track"
+        class="absolute left-1/2 top-72 bottom-0 w-10 -translate-x-1/2 hidden md:block border-x-4 border-double border-stone-500 bg-stone-900 opacity-95 z-0 shadow-[0_0_15px_rgba(0,0,0,0.6)]"
+        style="background-image: repeating-linear-gradient(180deg, transparent, transparent 14px, #57534e 14px, #57534e 18px);">
       </div>
 
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div class="relative">
+      <!-- SVG Top-View Toy Train -->
+      <div id="toy-train"
+        class="absolute left-1/2 -translate-x-1/2 top-72 z-30 hidden md:flex flex-col items-center transform rotate-180 origin-center filter drop-shadow-xl"
+        style="will-change: top;">
+        <!-- Smoke Puffs -->
+        <div class="relative w-full flex justify-center mb-2">
+          <div class="absolute -top-12 w-6 h-6 bg-white/40 rounded-full animate-ping delay-75"></div>
+          <div class="absolute -top-6 w-4 h-4 bg-white/60 rounded-full animate-ping"></div>
+        </div>
+        <img src="/assets/train.svg" class="w-20 h-40 transform scale-110" alt="Vintage Steam Train">
+      </div>
+
+      <!-- Floating Spices (Hidden initially, revealed via JS) -->
+      <div id="floating-ingredients" class="absolute inset-0 pointer-events-none z-20 hidden md:block overflow-hidden">
+        <div class="spice-float absolute top-[25%] left-[45%] text-4xl opacity-0">🌿</div>
+        <div class="spice-float absolute top-[40%] right-[45%] text-4xl opacity-0">🍂</div>
+        <div class="spice-float absolute top-[60%] left-[48%] text-3xl opacity-0">✨</div>
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10">
+
+        <!-- Header -->
+        <div class="text-center mb-20 md:mb-32">
+          <span
+            class="text-orange-600 font-bold tracking-widest uppercase mb-2 block font-['Patrick_Hand'] text-xl">Ideally
+            Yours</span>
+          <h2 class="text-6xl md:text-8xl font-bold text-amber-900 font-['Amatic_SC'] leading-none">
+            A Taste of <span class="text-orange-600">Home</span>
+          </h2>
+        </div>
+
+        <!-- Step 1: The Move (Right Image, Left Text) -->
+        <div class="flex flex-col md:flex-row items-center justify-between mb-24 relative group">
+          <!-- Text Side (Left) -->
+          <div class="w-full md:w-5/12 text-center md:text-right pr-0 md:pr-12 md:order-1 mb-8 md:mb-0 order-2">
             <div
-              class="absolute -inset-4 border-2 border-dashed border-stone-400 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] animate-pulse opacity-50">
+              class="sketch-box bg-white/60 p-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300 relative">
+              <span
+                class="text-8xl absolute -top-10 -right-6 text-stone-200 font-black font-['Amatic_SC'] select-none -z-10">01</span>
+              <h3 class="text-5xl font-bold text-amber-900 font-['Amatic_SC'] mb-4">The Departure</h3>
+              <p class="font-['Indie_Flower'] text-xl text-stone-700 leading-relaxed">
+                Gautam packed his bags for his Master's degree abroad. New city, new dreams. But as the flight took off,
+                he realized he left behind the one thing he loved most—his morning 'Tapri' chai.
+              </p>
             </div>
-            <img src="/assets/chai-ingredients.png"
-              class="w-full drop-shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500"
-              alt="Ingredients">
           </div>
-
-          <div>
-            <span class="text-orange-600 font-bold tracking-widest uppercase mb-2 block font-['Patrick_Hand']">Farm to
-              Cup</span>
-            <h2 class="text-5xl md:text-7xl font-bold text-amber-900 mb-6 font-['Amatic_SC']">Pure Ingredients,
-              <br />Zero Nonsense.
-            </h2>
-            <p class="text-xl text-stone-700 leading-relaxed mb-6">
-              We don't use "flavorings". We use the real thing. Hand-ground spices, premium tea leaves from the valleys
-              of Assam, and absolutely nothing artificial.
-            </p>
-
-            <ul class="space-y-4 text-lg font-bold text-stone-600">
-              <li class="flex items-center gap-3">
-                <span class="text-orange-500 text-2xl">✓</span> Real Spices
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-orange-500 text-2xl">✓</span> No Preservatives
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="text-orange-500 text-2xl">✓</span> Ready in 30 Seconds
-              </li>
-            </ul>
+          <!-- Node -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-4 border-white bg-stone-500 shadow-md hidden md:flex items-center justify-center z-20 md:order-2">
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+          </div>
+          <!-- Image Side (Right) -->
+          <div class="w-full md:w-5/12 pl-0 md:pl-12 md:order-3 mb-10 md:mb-0 order-1">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 border-2 border-stone-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] opacity-20 transform rotate-2">
+              </div>
+              <!-- Ideally use a travel/student image here, using tea-garden for 'Memory of Home' context -->
+              <img src="/assets/tea-garden.png" alt="Leaving Home"
+                class="w-full max-w-sm mx-auto drop-shadow-2xl rounded-2xl transform rotate-2 hover:scale-105 transition-transform duration-500 grayscale-[30%]">
+              <div class="absolute bottom-4 right-4 bg-white/80 px-2 py-1 rounded text-xs font-['Patrick_Hand']">Memory
+                of Home</div>
+            </div>
           </div>
         </div>
+
+        <!-- Step 2: The Void (Left Image, Right Text) -->
+        <div class="flex flex-col md:flex-row items-center justify-between mb-24 relative group">
+          <!-- Image Side -->
+          <div class="w-full md:w-5/12 pr-0 md:pr-12 mb-10 md:mb-0">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 border-2 border-stone-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] opacity-20 transform -rotate-2">
+              </div>
+              <img src="/assets/gautam-winter.png" alt="Homesick in Winter"
+                class="w-full max-w-sm mx-auto drop-shadow-2xl rounded-2xl transform -rotate-2 hover:scale-105 transition-transform duration-500 sepia-[50%]">
+            </div>
+          </div>
+          <!-- Node -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-4 border-white bg-amber-800 shadow-md hidden md:flex items-center justify-center z-20">
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+          </div>
+          <!-- Text Side -->
+          <div class="w-full md:w-5/12 text-center md:text-left pl-0 md:pl-12">
+            <div
+              class="sketch-box bg-white/60 p-8 transform rotate-1 hover:rotate-0 transition-transform duration-300 relative">
+              <span
+                class="text-8xl absolute -top-10 -left-6 text-orange-200 font-black font-['Amatic_SC'] select-none -z-10">02</span>
+              <h3 class="text-5xl font-bold text-amber-900 font-['Amatic_SC'] mb-4">The Craving</h3>
+              <p class="font-['Indie_Flower'] text-xl text-stone-700 leading-relaxed">
+                Weeks passed. The coffee was too bitter, the tea bags too weak. He missed the ginger punch of Mumbai and
+                the saffron warmth of Kashmir. The taste of his state was nowhere to be found.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: The Discovery (Right Image, Left Text) -->
+        <div class="flex flex-col md:flex-row items-center justify-between mb-24 relative group">
+          <!-- Text Side -->
+          <div class="w-full md:w-5/12 text-center md:text-right pr-0 md:pr-12 md:order-1 mb-8 md:mb-0 order-2">
+            <div
+              class="sketch-box bg-white/60 p-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300 relative">
+              <span
+                class="text-8xl absolute -top-10 -right-6 text-green-200 font-black font-['Amatic_SC'] select-none -z-10">03</span>
+              <h3 class="text-5xl font-bold text-amber-900 font-['Amatic_SC'] mb-4">The Discovery</h3>
+              <p class="font-['Indie_Flower'] text-xl text-stone-700 leading-relaxed">
+                Then a care package arrived via Fatafat. Not just tea, but a collection. 'Mumbai Cutting', 'Kolkata
+                Bhar', 'Jaipur Masala'. Authentic, state-specific blends in travel-friendly packs.
+              </p>
+            </div>
+          </div>
+          <!-- Node -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-4 border-white bg-green-600 shadow-md hidden md:flex items-center justify-center z-20 md:order-2">
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+          </div>
+          <!-- Image Side -->
+          <div class="w-full md:w-5/12 pl-0 md:pl-12 md:order-3 mb-10 md:mb-0 order-1">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 border-2 border-stone-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] opacity-20 transform rotate-2">
+              </div>
+              <img src="/assets/chai-pouch-premium.png" alt="Fatafat Packs"
+                class="w-full max-w-sm mx-auto drop-shadow-2xl rounded-2xl transform rotate-2 hover:scale-105 transition-transform duration-500">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: The Magic (Left Image, Right Text) -->
+        <div class="flex flex-col md:flex-row items-center justify-between mb-24 relative group">
+          <!-- Image Side -->
+          <div class="w-full md:w-5/12 pr-0 md:pr-12 mb-10 md:mb-0">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 border-2 border-stone-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] opacity-20 transform -rotate-2">
+              </div>
+              <img src="/assets/chai-ingredients.png" alt="Authentic Spices"
+                class="w-full max-w-sm mx-auto drop-shadow-2xl rounded-2xl transform -rotate-2 hover:scale-105 transition-transform duration-500">
+            </div>
+          </div>
+          <!-- Node -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-4 border-white bg-orange-500 shadow-md hidden md:flex items-center justify-center z-20">
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+          </div>
+          <!-- Text Side -->
+          <div class="w-full md:w-5/12 text-center md:text-left pl-0 md:pl-12">
+            <div
+              class="sketch-box bg-white/60 p-8 transform rotate-1 hover:rotate-0 transition-transform duration-300 relative">
+              <span
+                class="text-8xl absolute -top-10 -left-6 text-orange-200 font-black font-['Amatic_SC'] select-none -z-10">04</span>
+              <h3 class="text-5xl font-bold text-amber-900 font-['Amatic_SC'] mb-4">Every State's Soul</h3>
+              <p class="font-['Indie_Flower'] text-xl text-stone-700 leading-relaxed">
+                He brewed the 'Mumbai Cutting'. The aroma of crushed cardamom filled his tiny apartment. It wasn't
+                artificial flavor; it was the real soil of Maharashtra coming alive in hot water.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5: Home (Right Image, Left Text) -->
+        <div class="flex flex-col md:flex-row items-center justify-between relative group">
+          <!-- Text Side -->
+          <div class="w-full md:w-5/12 text-center md:text-right pr-0 md:pr-12 md:order-1 mb-8 md:mb-0 order-2">
+            <div
+              class="sketch-box bg-white/60 p-8 transform -rotate-1 hover:rotate-0 transition-transform duration-300 relative">
+              <span
+                class="text-8xl absolute -top-10 -right-6 text-yellow-200 font-black font-['Amatic_SC'] select-none -z-10">05</span>
+              <h3 class="text-5xl font-bold text-amber-900 font-['Amatic_SC'] mb-4">Home in a Cup</h3>
+              <p class="font-['Indie_Flower'] text-xl text-stone-700 leading-relaxed mb-6">
+                Now, Gautam doesn't miss the taste anymore. Whether he wants the zest of Gujarat or the spice of South
+                India, Fatafat brings every state to his cup.
+              </p>
+              <a href="#shop"
+                class="inline-block sketch-btn px-8 py-3 text-2xl font-bold text-amber-900 hover:scale-105">
+                Find Your State
+              </a>
+            </div>
+          </div>
+          <!-- Node -->
+          <div
+            class="absolute left-1/2 -translate-x-1/2 w-10 h-10 rounded-full border-4 border-white bg-amber-600 shadow-md hidden md:flex items-center justify-center z-20 md:order-2">
+            <div class="w-3 h-3 bg-white rounded-full"></div>
+          </div>
+          <!-- Image Side -->
+          <div class="w-full md:w-5/12 pl-0 md:pl-12 md:order-3 mb-10 md:mb-0 order-1">
+            <div class="relative">
+              <div
+                class="absolute -inset-4 border-2 border-stone-800 rounded-[255px_15px_225px_15px/15px_225px_15px_255px] opacity-20 transform rotate-2">
+              </div>
+              <img src="/assets/cozy-cup.png" alt="Home in a Cup"
+                class="w-full max-w-sm mx-auto drop-shadow-2xl rounded-2xl transform rotate-2 hover:scale-105 transition-transform duration-500">
+              <div class="absolute bottom-4 right-4 bg-white/80 px-2 py-1 rounded text-xs font-['Patrick_Hand']">Feeling
+                at Home</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
