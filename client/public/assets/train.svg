@@ -1,0 +1,49 @@
+<svg width="60" height="140" viewBox="0 0 60 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Drop Shadow -->
+    <ellipse cx="30" cy="70" rx="20" ry="50" fill="black" fill-opacity="0.3" filter="blur(4px)"/>
+    
+    <!-- Cowcatcher (Front) -->
+    <path d="M10 10 L30 0 L50 10 L50 15 L10 15 Z" fill="#1F2937" stroke="#B45309" stroke-width="2"/>
+    <path d="M30 0 L30 15" stroke="#B45309" stroke-width="1"/>
+    
+    <!-- Main Boiler Body -->
+    <rect x="15" y="15" width="30" height="85" rx="4" fill="url(#boilerGradient)" stroke="#111827" stroke-width="1"/>
+    
+    <!-- Gold Bands -->
+    <rect x="14" y="25" width="32" height="3" fill="url(#goldGradient)"/>
+    <rect x="14" y="55" width="32" height="3" fill="url(#goldGradient)"/>
+    <rect x="14" y="85" width="32" height="3" fill="url(#goldGradient)"/>
+    
+    <!-- Chimney (Stack) -->
+    <circle cx="30" cy="35" r="7" fill="#111" stroke="#F59E0B" stroke-width="2"/>
+    <circle cx="30" cy="35" r="3" fill="#333"/>
+    
+    <!-- Steam Dome -->
+    <circle cx="30" cy="65" r="5" fill="#B45309" stroke="#78350F" stroke-width="1"/>
+    <circle cx="30" cy="65" r="2" fill="#FCD34D" fill-opacity="0.8"/>
+    
+    <!-- Cabin (Rear) -->
+    <path d="M10 95 H50 V130 Q50 132 48 132 H12 Q10 132 10 130 V95 Z" fill="#7F1D1D" stroke="#450A0A" stroke-width="2"/>
+    <rect x="14" y="99" width="32" height="20" rx="1" fill="#991B1B" stroke="#B91C1C"/>
+    
+    <!-- Coal Tender Connection -->
+    <path d="M20 132 L40 132 L36 140 L24 140 Z" fill="#111"/>
+
+    <!-- Side Rods/Pistons -->
+    <rect x="6" y="30" width="4" height="60" rx="2" fill="#9CA3AF" stroke="#4B5563"/>
+    <rect x="50" y="30" width="4" height="60" rx="2" fill="#9CA3AF" stroke="#4B5563"/>
+    
+    <!-- Gradients -->
+    <defs>
+        <linearGradient id="boilerGradient" x1="15" y1="15" x2="45" y2="15" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#111827"/>
+            <stop offset="0.5" stop-color="#374151"/>
+            <stop offset="1" stop-color="#111827"/>
+        </linearGradient>
+        <linearGradient id="goldGradient" x1="14" y1="0" x2="46" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#B45309"/>
+            <stop offset="0.5" stop-color="#FCD34D"/>
+            <stop offset="1" stop-color="#B45309"/>
+        </linearGradient>
+    </defs>
+</svg>
