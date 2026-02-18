@@ -262,3 +262,52 @@ spiceBtns.forEach(btn => {
 });
 
 console.log("Fatafat Chai Sketch Theme Initialized");
+
+// --- Toy Train Animation ---
+// Moves the train from top to bottom of #story section via ScrollTrigger scrub
+gsap.to('#toy-train', {
+    scrollTrigger: {
+        trigger: '#story',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1
+    },
+    top: '95%', 
+    ease: 'none'
+});
+
+// Animate the train orientation slightly on scroll
+gsap.to('#toy-train div', {
+    scrollTrigger: {
+        trigger: '#story',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 2
+    },
+    rotation: 5,
+    yoyo: true,
+    repeat: 5
+});
+
+// Floating Spices Animation (Parallax + Reveal)
+const spices = document.querySelectorAll('.spice-float');
+if (spices.length > 0) {
+    spices.forEach((spice, i) => {
+        gsap.fromTo(spice, 
+            { y: 50, opacity: 0, scale: 0.5 },
+            {
+                y: -100,
+                opacity: 0.8,
+                scale: 1.2,
+                rotation: 360,
+                duration: 2,
+                scrollTrigger: {
+                    trigger: '#story',
+                    start: `top ${20 + (i * 20)}%`,
+                    end: `top ${40 + (i * 20)}%`,
+                    scrub: 1.5
+                }
+            }
+        );
+    });
+}
