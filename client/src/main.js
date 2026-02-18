@@ -61,6 +61,7 @@ heroTimeline.fromTo('#hero h2', { y: 20, opacity: 0 }, { y: 0, opacity: 1, durat
 // Product Cards Reveal
 const boxes = document.querySelectorAll('.sketch-box');
 boxes.forEach((box, i) => {
+    if (box.closest('#story')) return; // Skip story section boxes
     gsap.fromTo(box,
         {
             y: 50,
@@ -82,34 +83,7 @@ boxes.forEach((box, i) => {
     )
 });
 
-// Story Section Image Reveal
-gsap.fromTo('#story img',
-    { x: -50, opacity: 0 },
-    {
-        x: 0,
-        opacity: 0.9,
-        duration: 1,
-        scrollTrigger: {
-            trigger: '#story',
-            start: 'top 70%'
-        }
-    }
-);
 
-// Story Text Reveal
-gsap.fromTo('#story div:last-child > *',
-    { x: 50, opacity: 0 },
-    {
-        x: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.8,
-        scrollTrigger: {
-            trigger: '#story',
-            start: 'top 70%'
-        }
-    }
-);
 
 // Custom Chai Section Reveal
 gsap.fromTo('#custom-chai .container > *',
@@ -272,7 +246,7 @@ gsap.to('#toy-train', {
         end: 'bottom bottom',
         scrub: 1
     },
-    top: '95%', 
+    top: '95%',
     ease: 'none'
 });
 
@@ -293,7 +267,7 @@ gsap.to('#toy-train div', {
 const spices = document.querySelectorAll('.spice-float');
 if (spices.length > 0) {
     spices.forEach((spice, i) => {
-        gsap.fromTo(spice, 
+        gsap.fromTo(spice,
             { y: 50, opacity: 0, scale: 0.5 },
             {
                 y: -100,
