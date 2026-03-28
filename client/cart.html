@@ -54,47 +54,15 @@
                 </div>
 
                 <div class="flex flex-col items-center justify-center py-8">
-                    <div class="w-full space-y-6 mb-12">
-                        <!-- Example Cart Item 1 -->
-                        <div
-                            class="flex flex-col sm:flex-row items-center justify-between p-4 bg-white/50 border border-stone-200 rounded-md shadow-sm transform hover:scale-[1.01] transition-transform">
-                            <div class="flex items-center gap-6">
-                                <div
-                                    class="w-24 h-24 bg-stone-100 rounded-lg overflow-hidden p-2 flex items-center justify-center">
-                                    <img src="/assets/masala-chai.png" alt="Masala Chai"
-                                        class="w-full h-full object-contain">
-                                </div>
-                                <div class="text-center sm:text-left">
-                                    <h3 class="text-3xl font-bold text-amber-900 font-['Amatic_SC']">Masala Chai</h3>
-                                    <p class="text-lg text-stone-500 font-['Patrick_Hand']">Premium Pack (400g)</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 sm:mt-0 text-3xl font-bold text-orange-800 font-['Amatic_SC']">₹450</div>
-                        </div>
-
-                        <!-- Example Cart Item 2 -->
-                        <div
-                            class="flex flex-col sm:flex-row items-center justify-between p-4 bg-white/50 border border-stone-200 rounded-md shadow-sm transform hover:scale-[1.01] transition-transform">
-                            <div class="flex items-center gap-6">
-                                <div
-                                    class="w-24 h-24 bg-stone-100 rounded-lg overflow-hidden p-2 flex items-center justify-center">
-                                    <img src="/assets/elaichi-chai.png" alt="Elaichi Chai"
-                                        class="w-full h-full object-contain">
-                                </div>
-                                <div class="text-center sm:text-left">
-                                    <h3 class="text-3xl font-bold text-amber-900 font-['Amatic_SC']">Elaichi Chai</h3>
-                                    <p class="text-lg text-stone-500 font-['Patrick_Hand']">Bestseller Pack (400g)</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 sm:mt-0 text-3xl font-bold text-orange-800 font-['Amatic_SC']">₹450</div>
-                        </div>
+                    <div id="cart-container" class="w-full space-y-6 mb-12">
+                        <!-- Dynamic Cart Items Will Appear Here -->
                     </div>
 
                     <!-- Summary Section -->
-                    <div class="w-full border-t-2 border-dashed border-stone-300 pt-8 mt-4">
+                    <div id="cart-summary" class="w-full border-t-2 border-dashed border-stone-300 pt-8 mt-4 hidden">
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-xl font-['Patrick_Hand'] text-stone-600">Subtotal</span>
-                            <span class="text-2xl font-bold font-['Amatic_SC'] text-stone-800">₹900</span>
+                            <span id="cart-subtotal" class="text-2xl font-bold font-['Amatic_SC'] text-stone-800">₹0</span>
                         </div>
                         <div class="flex justify-between items-center mb-6">
                             <span class="text-xl font-['Patrick_Hand'] text-stone-600">Shipping</span>
@@ -102,11 +70,11 @@
                         </div>
                         <div class="flex justify-between items-center mb-8 pb-4 border-b border-stone-200">
                             <span class="text-3xl font-bold font-['Amatic_SC'] text-amber-900">Total</span>
-                            <span class="text-5xl font-bold font-['Amatic_SC'] text-orange-700">₹900</span>
+                            <span id="cart-total" class="text-5xl font-bold font-['Amatic_SC'] text-orange-700">₹0</span>
                         </div>
 
                         <div class="flex flex-col gap-4 w-full max-w-md mx-auto">
-                            <button
+                            <button id="checkout-btn"
                                 class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-full shadow-lg transition-all transform hover:scale-[1.02] hover:rotate-1 text-2xl font-['Amatic_SC'] tracking-wider">
                                 Proceed to Checkout
                             </button>
@@ -129,7 +97,75 @@
         </div>
     </footer>
 
-    <script type="module" src="/src/main.js"></script>
+    <script type="module">
+        const cartContainer = document.getElementById('cart-container');
+        const cartSummary = document.getElementById('cart-summary');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('fatafat-cart')) || [];
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `
+                    <div class="text-center py-12 text-stone-400 font-['Patrick_Hand'] text-2xl">
+                        Your cart is empty... <br>
+                        <a href="index.html#shop" class="text-orange-600 underline">Go shopping!</a>
+                    </div>
+                `;
+                cartSummary.classList.add('hidden');
+                return;
+            }
+
+            cartSummary.classList.remove('hidden');
+            cartContainer.innerHTML = '';
+            
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                const itemEl = document.createElement('div');
+                itemEl.className = 'flex flex-col sm:flex-row items-center justify-between p-4 bg-white/50 border border-stone-200 rounded-md shadow-sm transform hover:scale-[1.01] transition-transform';
+                itemEl.innerHTML = `
+                    <div class="flex items-center gap-6">
+                        <div class="w-24 h-24 bg-stone-100 rounded-lg overflow-hidden p-2 flex items-center justify-center">
+                            <img src="${item.image || '/assets/chai-logo.png'}" alt="${item.name}" class="w-full h-full object-contain">
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <h3 class="text-3xl font-bold text-amber-900 font-['Amatic_SC']">${item.name}</h3>
+                            <p class="text-lg text-stone-500 font-['Patrick_Hand']">Quantity: ${item.quantity}</p>
+                            <button class="remove-item text-red-500 text-sm font-['Patrick_Hand'] underline cursor-pointer" data-index="${index}">Remove</button>
+                        </div>
+                    </div>
+                    <div class="mt-4 sm:mt-0 text-3xl font-bold text-orange-800 font-['Amatic_SC']">₹${item.price * item.quantity}</div>
+                `;
+                cartContainer.appendChild(itemEl);
+            });
+
+            cartSubtotal.textContent = `₹${total}`;
+            cartTotal.textContent = `₹${total}`;
+
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const idx = btn.dataset.index;
+                    cart.splice(idx, 1);
+                    localStorage.setItem('fatafat-cart', JSON.stringify(cart));
+                    renderCart();
+                });
+            });
+        }
+
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', () => {
+                alert('Thank you for your order! This is a demo. 😊');
+                localStorage.removeItem('fatafat-cart');
+                renderCart();
+            });
+        }
+
+        renderCart();
+    </script>
 </body>
 
 </html>

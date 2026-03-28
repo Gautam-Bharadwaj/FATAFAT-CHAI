@@ -16,6 +16,20 @@
 <body class="antialiased opacity-0 transition-opacity duration-700 ease-in"
   onload="document.body.classList.remove('opacity-0')">
 
+  <!-- Background Overlay Layers -->
+  <div class="bg-overlay-stain" aria-hidden="true"></div>
+  <div class="bg-splatters" aria-hidden="true"></div>
+  <div class="bg-splatters-bottom" aria-hidden="true"></div>
+  <div class="bg-vignette" aria-hidden="true"></div>
+  <div class="bg-noise-grain" aria-hidden="true"></div>
+
+  <!-- Floating Particles -->
+  <div class="floating-particle particle-1">🍃</div>
+  <div class="floating-particle particle-2">🌿</div>
+  <div class="floating-particle particle-3">✨</div>
+  <div class="floating-particle particle-4">🍂</div>
+  <div class="floating-particle particle-5">🍃</div>
+
   <!-- Navigation -->
   <header id="navbar" class="fixed top-0 left-0 w-full z-50 py-4 transition-all duration-300">
     <div class="container mx-auto px-6 flex items-center justify-between">
@@ -36,12 +50,21 @@
       </a>
 
       <!-- Mobile Menu Button -->
-      <button class="md:hidden text-amber-900">
+      <button id="mobile-menu-btn" class="md:hidden text-amber-900 z-50">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
           class="w-8 h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
+
+      <!-- Mobile Menu Overlay -->
+      <div id="mobile-menu" class="fixed inset-0 bg-[#f8f5e6] z-40 translate-x-full transition-transform duration-500 flex flex-col items-center justify-center space-y-8 md:hidden">
+        <a href="#hero" class="mobile-nav-link text-4xl font-['Amatic_SC'] font-bold text-amber-900">Home</a>
+        <a href="#shop" class="mobile-nav-link text-4xl font-['Amatic_SC'] font-bold text-amber-900">Our Blends</a>
+        <a href="#story" class="mobile-nav-link text-4xl font-['Amatic_SC'] font-bold text-amber-900">Story</a>
+        <a href="#custom-chai" class="mobile-nav-link text-4xl font-['Amatic_SC'] font-bold text-amber-900">Make Your Own Chai</a>
+        <a href="cart.html" class="mobile-nav-link text-4xl font-['Amatic_SC'] font-bold text-orange-600">Your Cart</a>
+      </div>
     </div>
     <!-- Development Warning Strip -->
     <div class="marquee-container font-['Patrick_Hand'] text-lg tracking-widest uppercase">
@@ -97,6 +120,9 @@
       <div class="absolute top-1/4 left-10 text-6xl opacity-20 rotate-12 select-none pointer-events-none">✨</div>
       <div class="absolute bottom-10 right-10 text-6xl opacity-20 -rotate-12 select-none pointer-events-none">🌿</div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="sketch-divider container mx-auto"></div>
 
     <!-- Product Grid Section -->
     <section id="shop" class="section-padding relative">
@@ -210,6 +236,9 @@
 
       </div>
     </section>
+
+    <!-- Section Divider -->
+    <div class="sketch-divider container mx-auto"></div>
 
     <!-- Story / Features Section (Gautam's Journey) -->
     <section id="story" style="zoom: 0.85;" class="py-24 relative overflow-hidden bg-[#fdfbf7]">

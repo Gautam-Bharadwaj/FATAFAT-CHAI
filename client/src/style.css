@@ -13,15 +13,114 @@
 
 body {
   background-color: var(--bg-color);
-  background-image: url('/assets/bg-parchment.png');
-  background-size: cover;
-  background-attachment: fixed;
   color: var(--text-color);
   font-family: 'Indie Flower', cursive;
-  /* Handwritten font */
   overflow-x: hidden;
   cursor: auto;
-  /* Reverting custom cursor for now unless requested */
+  position: relative;
+}
+
+/* ── Premium Multi-Layer Background ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  /* Layer 1: Warm radial glow from center */
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(217, 119, 6, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(180, 120, 60, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 251, 235, 0.9) 0%, rgba(248, 245, 230, 0.7) 100%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  /* Layer 2: Clean parchment texture */
+  background-image: url('/assets/bg-parchment-new.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+}
+
+/* Layer 3: Subtle stained overlay for depth (via a wrapper) */
+.bg-overlay-stain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('/assets/bg-parchment-overlay.png');
+  background-size: 1200px 1200px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Layer 4: Watercolor Splatters (Organic decoration) */
+.bg-splatters {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('/assets/tea-splatter.png');
+  background-size: 800px;
+  background-repeat: no-repeat;
+  background-position: -100px -100px;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  filter: sepia(40%) saturate(80%);
+}
+
+.bg-splatters-bottom {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('/assets/tea-splatter.png');
+  background-size: 600px;
+  background-repeat: no-repeat;
+  background-position: bottom -100px right -100px;
+  opacity: 0.1;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  filter: rotate(180deg) sepia(40%);
+}
+
+/* Layer 5: Burnt Edge Vignette */
+.bg-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 60%, rgba(74, 59, 42, 0.08) 100%);
+}
+
+/* Layer 6: CSS noise grain for premium paper feel */
+.bg-noise-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Section Dividers ── */
+.sketch-divider {
+  height: 40px;
+  width: 100%;
+  background-image: url('/assets/sketch-divider.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.3;
+  margin: 4rem 0;
 }
 
 /* Typography Overrides */
@@ -149,6 +248,12 @@ nav a:hover::after {
 }
 
 /* Utility */
+.mask-image-fade {
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 95%);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 95%);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+}
+
 .section-padding {
   @apply py-20 px-6 md:px-12 lg:px-24;
 }
@@ -240,11 +345,77 @@ nav a:hover::after {
   left: 0;
   width: 100%;
   transform: translateY(100%);
-  background-color: #dc2626;
-  /* red-600 */
-  color: white;
+  background-color: #9b2226;
+  /* Deeper, more vintage red */
+  color: #f8f5e6;
   padding: 0.25rem 0;
   z-index: 40;
   display: flex;
   align-items: center;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ── Floating Background Elements ── */
+.floating-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.15;
+  filter: blur(0.5px);
+  animation: float-rise 20s linear infinite;
+}
+
+@keyframes float-rise {
+  0% {
+    transform: translateY(100vh) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.15;
+  }
+
+  90% {
+    opacity: 0.15;
+  }
+
+  100% {
+    transform: translateY(-20vh) rotate(360deg) translateX(50px);
+    opacity: 0;
+  }
+}
+
+/* Specific delays to vary movement */
+.particle-1 {
+  left: 5%;
+  animation-duration: 25s;
+  font-size: 24px;
+}
+
+.particle-2 {
+  left: 25%;
+  animation-duration: 35s;
+  font-size: 18px;
+  animation-delay: -5s;
+}
+
+.particle-3 {
+  left: 45%;
+  animation-duration: 30s;
+  font-size: 32px;
+  animation-delay: -15s;
+}
+
+.particle-4 {
+  left: 65%;
+  animation-duration: 40s;
+  font-size: 20px;
+  animation-delay: -10s;
+}
+
+.particle-5 {
+  left: 85%;
+  animation-duration: 28s;
+  font-size: 28px;
+  animation-delay: -20s;
 }

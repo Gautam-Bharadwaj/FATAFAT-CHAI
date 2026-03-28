@@ -47,7 +47,74 @@ lenis.on('scroll', ({ scroll }) => {
     }
 });
 
-// --- Sketch Theme Animations ---
+// --- Mobile Menu Toggle ---
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('translate-x-0');
+        if (isOpen) {
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        } else {
+            mobileMenu.classList.add('translate-x-0');
+            mobileMenu.classList.remove('translate-x-full');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        });
+    });
+}
+
+// --- Cart Logic ---
+let cart = JSON.parse(localStorage.getItem('fatafat-cart')) || [];
+
+function saveCart() {
+    localStorage.setItem('fatafat-cart', JSON.stringify(cart));
+}
+
+function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    saveCart();
+    alert(`Added ${product.name} to cart!`);
+}
+
+// Attach listeners to "Add to Cart" buttons
+document.querySelectorAll('a[href="cart.html"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const box = btn.closest('.sketch-box');
+        if (!box) return;
+
+        // Skip the "Customize Now" buttons that aren't product cards
+        const title = box.querySelector('h3')?.textContent;
+        const priceText = box.querySelector('span.text-2xl')?.textContent;
+
+        if (title && priceText) {
+            e.preventDefault();
+            const price = parseInt(priceText.replace('₹', ''));
+            addToCart({
+                id: title.toLowerCase().replace(/\s+/g, '-'),
+                name: title,
+                price: price,
+                image: box.querySelector('img')?.src
+            });
+        }
+    });
+});
 
 // Hero Animations
 const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -207,6 +274,25 @@ function playPianoSound(frequency) {
 
     oscillator.start(t);
     oscillator.stop(t + 1.0);
+}
+
+// Attach listener to Custom Chai "Buy on Website" button
+const customChaiBtn = document.querySelector('#custom-chai a[href="cart.html"]');
+if (customChaiBtn) {
+    customChaiBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const priceText = document.getElementById('summary-price')?.textContent;
+        const price = parseInt(priceText?.replace('₹', '') || '450');
+        
+        const description = currentBase === 'plain' ? 'Plain Assam Gold' : `Tea + ${selectedSpices.join(', ')}`;
+        
+        addToCart({
+            id: `custom-chai-${Date.now()}`,
+            name: `Custom Chai: ${description}`,
+            price: price,
+            image: '/assets/chai-pouch-premium.png'
+        });
+    });
 }
 
 spiceBtns.forEach(btn => {

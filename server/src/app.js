@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const authRoutes = require('../routes/auth');
+const productRoutes = require('../routes/products');
 
 const app = express();
 
@@ -7,18 +9,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
+
 // Health Check Route
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
-    message: 'ShopSmart Backend is running',
+    message: 'FATAFAT-CHAI Backend is running',
     timestamp: new Date().toISOString()
   });
 });
 
-// Root Route (optional, just to show something)
+// Root Route
 app.get('/', (req, res) => {
-  res.send('ShopSmart Backend Service');
+  res.send('FATAFAT-CHAI Backend Service');
 });
 
 module.exports = app;

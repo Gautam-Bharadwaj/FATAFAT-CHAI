@@ -30,12 +30,11 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
-| **Frontend** | React.js, Vite, HTML5, CSS3 | Interactive UI & User Interface |
-| **Backend** | Node.js, Express.js | API Server & Business Logic |
-| **Database** | SQLite3 | Lightweight Data Storage |
-| **ORM** | Prisma | Type-safe Database Operations |
+| **Frontend** | Vanilla JS, Vite, HTML5, CSS3, Tailwind, GSAP | Animated UI & Interactive Experience |
+| **Backend** | Node.js, Express.js, Mongoose | API Server & Business Logic |
+| **Database** | MongoDB | Cloud Document Storage |
+| **DevOps** | Docker, GitHub Actions, Bash Automation | CI/CD & Infrastructure |
 | **Deployment** | Vercel (Frontend), Render (Backend) | Cloud Hosting |
-| **DevOps** | Git, GitHub, Environment Variables | Version Control & Configuration |
 
 ---
 
@@ -73,38 +72,17 @@ FATAFAT CHAI is a **college DevOps project** that demonstrates practical experti
 
 ---
 
-## Database Setup
+## Database Architecture
 
-### Prisma Schema
+### Mongoose Schema (User)
 
-```prisma
-model Product {
-  id          Int     @id @default(autoincrement())
-  name        String
-  price       Float
-  description String
-  image       String?
-  category    String
-  inStock     Boolean @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-```
-
-### Initial Setup
-
-```bash
-# Install dependencies
-npm install
-
-# Generate Prisma client
-npx prisma generate
-
-# Run migrations
-npx prisma migrate dev --name init
-
-# (Optional) Seed database
-npx prisma db seed
+```javascript
+const UserSchema = new mongoose.Schema({
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  name: { type: String },
+  createdAt: { type: Date, default: Date.now }
+});
 ```
 
 ---
@@ -163,16 +141,13 @@ cd server
 npm install
 
 # Create .env file
-echo 'PORT=5000
-DATABASE_URL="file:./dev.db"
+echo 'PORT=5001
+MONGO_URI=mongodb://localhost:27017/fatafat-chai
 NODE_ENV=development' > .env
-
-# Setup database
-npx prisma migrate dev --name init
 
 # Start backend
 npm start
-# Runs on http://localhost:5000
+# Runs on http://localhost:5001
 ```
 
 ### 3. Frontend Setup
@@ -186,7 +161,7 @@ npm run dev
 
 ### Verify Everything Works
 
-- Backend API: `http://localhost:5000/api/products`
+- Backend API: `http://localhost:5001/api/products`
 - Frontend: `http://localhost:5173`
 - You should see the chai products loaded!
 
