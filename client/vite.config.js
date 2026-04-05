@@ -1,9 +1,19 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    // No plugins needed for vanilla JS + Tailwind unless specifically required
-    server: {
-        port: 5173,
-        host: true
-    }
-})
+  plugins: [react()],
+  define: {
+    __APP_API_URL__: JSON.stringify(process.env.VITE_API_URL || ''),
+  },
+  server: {
+    port: 3000,
+    host: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+      },
+    },
+  },
+});
