@@ -227,4 +227,4 @@ bash scripts/health-check.sh
 
 ## License
 
-MIT (adjust if your project uses a different license).
+This project's automation logic and infrastructure scripts are **Proprietary**. Unauthorised use or deployment of this configuration is strictly prohibited. For permissions, contact the author. See [LICENSE.txt](LICENSE.txt) for details.
