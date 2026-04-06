@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     volumes:
       - ./client:/app
+      - /app/node_modules
     depends_on:
       - server
     networks:
@@ -22,6 +23,7 @@ services:
       - "5000:5000"
     volumes:
       - ./server:/app
+      - /app/node_modules
     networks:
       - app-network
 
