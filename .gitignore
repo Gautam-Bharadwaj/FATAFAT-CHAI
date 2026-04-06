@@ -1,8 +1,10 @@
 node_modules
 .DS_Store
 .env
+.env.local
 dist
 build
 coverage
 .vercel
-node_modules/\n.env\ndist/
+server/coverage
+client/coverage

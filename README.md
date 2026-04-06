@@ -1,278 +1,230 @@
-# FATAFAT CHAI
+# Fatafat Chai
 
-**Instant Indian Chai – From Click to Cup**
+**Fast, authentic chai — from cart to cup.** A tea e-commerce style monorepo with a React (Vite) storefront, Express + MongoDB API, automated tests, and optional EC2 + PM2 deployment.
 
-A full-stack e-commerce platform for ordering premium Indian chai online. Built with modern web technologies and deployed on cloud platforms.
+[![CI](https://github.com/PLACEHOLDER_ORG/FATAFAT-CHAI/actions/workflows/ci.yml/badge.svg)](https://github.com/PLACEHOLDER_ORG/FATAFAT-CHAI/actions/workflows/ci.yml)
+![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-FATAFAT CHAI is a **college DevOps project** that demonstrates practical expertise in full-stack development, REST API design, database management, and cloud deployment. The application provides a seamless experience for browsing chai products, managing carts, and processing orders.
+Replace `PLACEHOLDER_ORG` in the badge URLs with your GitHub org or username after publishing the repository.
 
----
+## Architecture
 
-## Project Overview
-
-**Type:** Full-Stack E-Commerce Application with DevOps Deployment  
-**Duration:** College Project  
-**Hosting:** Frontend (Vercel) + Backend (Render)
-
-### Key Learning Objectives
-
-- Build a functional, production-ready e-commerce platform
-- Design and implement RESTful APIs with proper CRUD operations
-- Master database design with SQLite and ORM (Prisma)
-- Handle cross-origin requests (CORS) after cloud deployment
-- Deploy full-stack applications on real hosting platforms
-- Manage environment variables and sensitive data securely
-- Implement version control with Git and GitHub
-
----
-
-## Tech Stack
-
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Frontend** | Vanilla JS, Vite, HTML5, CSS3, Tailwind, GSAP | Animated UI & Interactive Experience |
-| **Backend** | Node.js, Express.js, Mongoose | API Server & Business Logic |
-| **Database** | MongoDB | Cloud Document Storage |
-| **DevOps** | Docker, GitHub Actions, Bash Automation | CI/CD & Infrastructure |
-| **Deployment** | Vercel (Frontend), Render (Backend) | Cloud Hosting |
-
----
-
-## Features
-
-### Customer Features
-- **Browse Products** - View all available chai products with descriptions
-- **Product Details** - Check detailed information, pricing, and ratings
-- **Shopping Cart** - Add/remove items and manage quantities
-- **Checkout** - Complete order placement with validation
-- **Responsive Design** - Works on desktop, tablet, and mobile
-
-### Admin / Backend Features
-- **Product Management** - Full CRUD operations for chai inventory
-- **Order Management** - Track and manage customer orders
-- **RESTful API** - Well-documented API endpoints for integration
-- **Database Operations** - Efficient queries using Prisma ORM
-- **Error Handling** - Comprehensive error responses and logging
-
----
-
-## API Endpoints
-
-### Products CRUD API
-
-| Operation | Method | Endpoint | Description |
-|-----------|--------|----------|-------------|
-| List All | GET | `/api/products` | Fetch all chai products |
-| Get Single | GET | `/api/products/:id` | Get product by ID |
-| Create | POST | `/api/products` | Add new product (Admin) |
-| Update | PUT | `/api/products/:id` | Update product details |
-| Delete | DELETE | `/api/products/:id` | Remove a product |
-
-**All database operations use Prisma ORM with SQLite for data persistence.**
-
----
-
-## Database Architecture
-
-### Mongoose Schema (User)
-
-```javascript
-const UserSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  name: { type: String },
-  createdAt: { type: Date, default: Date.now }
-});
+```mermaid
+flowchart LR
+  subgraph users [Users]
+    U[Browser]
+  end
+  subgraph client [Client]
+    R[React_Vite]
+  end
+  subgraph server [Server]
+    E[Express_API]
+  end
+  subgraph data [Data]
+    M[(MongoDB)]
+  end
+  subgraph cicd [CI_CD]
+    G[GitHub_Actions]
+    EC2[AWS_EC2_PM2]
+  end
+  U --> R
+  R --> E
+  E --> M
+  G --> EC2
+  EC2 --> E
 ```
 
----
+| Layer | Responsibility |
+|--------|------------------|
+| **React (Vite)** | Product browsing, auth UI, cart, checkout flow; talks to the API via `fetch` (dev proxy `/api` → port 5000). |
+| **Express** | REST API: products, auth (JWT), cart; validation and authorization middleware. |
+| **MongoDB** | Persistent users, products, and per-user cart lines. |
+| **GitHub Actions** | Lint, test, and (after green CI on `main`) SSH deploy to EC2. |
+| **EC2 + PM2** | Runs `server/server.js` under PM2; static client build can be served by Nginx or any static host. |
 
-## Project Structure
+## Workflow (development to production)
+
+1. Develop locally in `client/` and `server/` (feature branches).
+2. Open a pull request to `main`; **Lint** and **CI** workflows run (ESLint, Prettier, Jest).
+3. Merge to `main`; **CI** runs on the push.
+4. When **CI** completes successfully, **Deploy** runs: SSH to EC2, `git pull`, `npm ci`, build client, `pm2 restart fatafat-api`.
+
+See [EC2_SETUP.md](EC2_SETUP.md) for one-time server provisioning and GitHub Secrets.
+
+## GitHub Actions workflows
+
+| Workflow | Trigger | What it does |
+|----------|---------|----------------|
+| **CI** (`ci.yml`) | Push to any branch; PRs to `main` | Backend: `npm ci`, ESLint, Prettier, Jest + coverage. Frontend: `npm ci`, ESLint, Prettier, Jest. |
+| **Lint** (`lint.yml`) | Pull requests to `main` only | ESLint `--max-warnings 0` and Prettier `--check` for `server/` and `client/`. |
+| **Deploy** (`deploy.yml`) | After **CI** succeeds on `main` (`workflow_run`) | SSH deploy: pull, install, build client, PM2 restart `fatafat-api`. |
+
+`Deploy` cannot `needs:` jobs from another workflow file; gating is implemented with `workflow_run` on the **CI** workflow name.
+
+## Design decisions
+
+| Choice | Why |
+|--------|-----|
+| **React** | Component reuse (cards, cart lines, navbar), large ecosystem, straightforward testing with Testing Library. |
+| **Express** | Small surface area, flexible routing, easy to test with Supertest. |
+| **MongoDB + Mongoose** | Flexible schema for a evolving product catalog and embedded cart lines on users. |
+| **PM2** | Keeps the API alive, restarts on crash, integrates cleanly with simple EC2 setups. |
+| **Jest + Cypress** | Jest isolates units and integration against an in-memory DB; Cypress validates real browser flows. |
+
+## Challenges and solutions
+
+| Challenge | Solution |
+|-----------|----------|
+| **Cart state vs. logged-in user** | Cart is stored server-side on the `User` document; the client refetches after mutations and the navbar shows a count from `GET /api/cart`. |
+| **Product images / static assets** | Product `image` fields store URL paths; Vite serves `public/` assets in dev and bundles client paths in production builds. |
+| **JWT configuration in tests** | `JWT_SECRET` is read at **verify/sign time** so integration tests can set `process.env.JWT_SECRET` before issuing tokens. |
+| **CORS / API base URL** | Dev uses Vite `proxy` to `localhost:5000`. Production can set `VITE_API_URL` at build time via `define` in `vite.config.js`. |
+
+## Project structure
 
 ```
-FATAFAT-CHAI/
-│
-├── client/                     # React Frontend (Vercel)
+.
+├── client/                 # Vite + React SPA
 │   ├── src/
-│   │   ├── App.jsx
-│   │   ├── App.test.jsx
-│   │   ├── main.jsx
-│   │   ├── index.css
-│   │   └── setupTests.js
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/                     # Node.js Backend (Render)
-│   ├── src/
-│   │   ├── app.js             # Express configuration
-│   │   └── index.js           # Server entry point
-│   ├── tests/
-│   │   └── app.test.js
+│   │   ├── components/     # Navbar, ProductCard, CartItem, Layout
+│   │   ├── context/        # Auth + cart refresh
+│   │   ├── pages/          # Home, Login, Products, Product detail, Cart, Checkout
+│   │   ├── api/            # fetch helpers
+│   │   └── __tests__/      # Jest + Testing Library
+│   ├── vite.config.js
 │   └── package.json
-│
-├── .env                        # Environment variables
-├── render.yaml                 # Render deployment config
-├── Idea.md                     # Project ideation
-└── README.md                   # This file
+├── server/                 # Express API
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── utils/
+│   ├── __tests__/          # Unit + integration (mongodb-memory-server)
+│   ├── seed.js
+│   ├── server.js
+│   └── package.json
+├── cypress/                # E2E specs, fixtures, support
+├── scripts/                # setup, seed, health-check, deploy, dev
+├── .github/workflows/      # CI, Lint, Deploy
+├── docker-compose.yml
+├── EC2_SETUP.md
+└── README.md
 ```
 
----
-
-## Getting Started Locally
+## How to run locally
 
 ### Prerequisites
 
-- Node.js v16+ and npm
-- Git
-- Code editor (VS Code recommended)
+- Node.js **18+**
+- MongoDB reachable at `MONGO_URI` (local or Atlas)
+- Optional: `pm2` for production-like process management
 
-### 1. Clone & Setup
-
-```bash
-git clone https://github.com/your-username/FATAFAT-CHAI.git
-cd FATAFAT-CHAI
-```
-
-### 2. Backend Setup
+### Setup
 
 ```bash
-cd server
-npm install
-
-# Create .env file
-echo 'PORT=5001
-MONGO_URI=mongodb://localhost:27017/fatafat-chai
-NODE_ENV=development' > .env
-
-# Start backend
-npm start
-# Runs on http://localhost:5001
+git clone <your-repo-url> fatafat-chai
+cd fatafat-chai
+chmod +x scripts/*.sh
+bash scripts/setup.sh
 ```
 
-### 3. Frontend Setup
+Edit `server/.env` (created from `server/.env.example` if missing).
+
+### Seed sample products
 
 ```bash
-cd ../client
-npm install
-npm run dev
-# Runs on http://localhost:5173
+bash scripts/seed.sh
 ```
 
-### Verify Everything Works
+Inserts ten sample products when the `products` collection is empty.
 
-- Backend API: `http://localhost:5001/api/products`
-- Frontend: `http://localhost:5173`
-- You should see the chai products loaded!
+### Start development
 
----
-
-## Production Deployment
-
-### Frontend on Vercel
-
-1. Push code to GitHub
-2. Connect GitHub repo to Vercel
-3. Set build command: `npm run build`
-4. Set start command: `npm run dev`
-5. Deploy automatically on every push
-
-**Frontend URL:** `https://your-app.vercel.app`
-
-### Backend on Render
-
-1. Create Render account and connect GitHub
-2. Create new Web Service
-3. Build command: `npm install`
-4. Start command: `node src/index.js`
-5. Add environment variables in Render dashboard:
-   - `DATABASE_URL="file:./dev.db"`
-   - `NODE_ENV=production`
-
-**Backend URL:** `https://your-app.onrender.com`
-
-### CORS Configuration
-
-After deployment, update CORS settings in backend:
-
-```javascript
-const cors = require("cors");
-
-app.use(cors({
-  origin: "https://your-app.vercel.app",
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
-}));
+```bash
+bash scripts/dev.sh
 ```
 
----
+- Client: [http://localhost:3000](http://localhost:3000)
+- API: [http://localhost:5000](http://localhost:5000)
+
+Alternatively:
+
+```bash
+npm run dev --prefix server
+npm run dev --prefix client
+```
+
+### Tests
+
+```bash
+npm test --prefix server -- --runInBand
+npm test --prefix client
+```
+
+### E2E (Cypress)
+
+Requires API + Mongo + seeded products and the client dev server:
+
+```bash
+# terminal 1
+npm run dev --prefix server
+
+# terminal 2
+npm run dev --prefix client
+
+# terminal 3
+npm run cypress:open    # or npm run cypress:run
+```
+
+### Health check
+
+```bash
+bash scripts/health-check.sh
+```
+
+## Environment variables
+
+### `server/.env`
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `PORT` | HTTP port for Express | `5000` |
+| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/fatafat-chai` |
+| `JWT_SECRET` | Secret for signing JWTs | long random string |
+| `JWT_EXPIRES_IN` | Token lifetime | `7d` |
+
+### `client/.env`
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `VITE_API_URL` | Absolute API origin for production builds (empty = same-origin / dev proxy) | `https://api.example.com` |
+
+## API endpoints
+
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| GET | `/api/health` | — | Liveness / status JSON |
+| GET | `/api/products` | — | List products |
+| GET | `/api/products/:id` | — | Product by id |
+| POST | `/api/products` | Admin JWT | Create product |
+| DELETE | `/api/products/:id` | Admin JWT | Delete product |
+| POST | `/api/auth/register` | — | Register; returns JWT |
+| POST | `/api/auth/login` | — | Login; returns JWT |
+| GET | `/api/cart` | User JWT | Current cart with line totals |
+| POST | `/api/cart` | User JWT | Body: `{ productId, quantity? }` add/update line |
+| PATCH | `/api/cart/:itemId` | User JWT | Body: `{ quantity }` |
+| DELETE | `/api/cart/:itemId` | User JWT | Remove line (by cart line id or product id) |
 
 ## Testing
 
-### Backend Tests
+| Type | Command | Notes |
+|------|---------|--------|
+| **Backend unit** | `npm run test:unit --prefix server` | Mocks Mongoose models where needed |
+| **Backend integration** | `npm run test:integration --prefix server` | Jest + Supertest + `mongodb-memory-server` |
+| **Frontend unit** | `npm test --prefix client` | Jest + jsdom + Testing Library |
+| **E2E** | `npm run cypress:run` | Requires running stack; see [cypress/fixtures/user.json](cypress/fixtures/user.json) |
 
-```bash
-cd server
-npm test
-```
+## License
 
-### Frontend Tests
-
-```bash
-cd client
-npm test
-```
-
----
-
-## Learning Outcomes
-
-This project covers essential full-stack development concepts:
-
-- **REST API Design** - Understanding HTTP methods, status codes, and RESTful principles
-- **Database Design** - Schema design, relationships, and data normalization with SQLite
-- **ORM Usage** - Type-safe database queries with Prisma
-- **React Fundamentals** - Components, hooks, state management, and routing
-- **Express.js** - Middleware, routing, error handling, and middleware chaining
-- **Authentication Concepts** - Environment variables and secure configuration
-- **Cloud Deployment** - Hosting applications on modern platforms
-- **CORS & Security** - Cross-origin requests and security best practices
-- **Git Workflow** - Version control, branching, and collaboration
-
----
-
-## Future Enhancements
-
-- User authentication with JWT
-- Payment gateway integration (Razorpay/Stripe)
-- Order management and tracking
-- Product reviews and ratings
-- Docker containerization
-- CI/CD pipeline with GitHub Actions
-- Admin dashboard with analytics
-- Email notifications
-
----
-
-## Developer
-
-**Gautam Kumar Jha**  
-Full Stack & DevOps Developer
-
----
-
-## 🛠️ DevOps & Infrastructure
-Is project mein **Fatafat Chai** ki scaling aur deployment ko automate kiya gaya hai.
-* **CI/CD:** GitHub Actions / Jenkins
-* **Containerization:** Docker & Kubernetes
-* **Monitoring:** [Prometheus/Grafana - agar use kiya ho toh]
-
-## ⚖️ License
-**Copyright (c) 2026 Gautam Jha.**
-This project's automation logic and infrastructure scripts are **Proprietary**. 
-Unauthorised use or deployment of this configuration is strictly prohibited. 
-For permissions, contact the author.
-
-
-## New Features
-- Interactive Story Journey with Toy Train animation
+This project's automation logic and infrastructure scripts are **Proprietary**. Unauthorised use or deployment of this configuration is strictly prohibited. For permissions, contact the author. See [LICENSE.txt](LICENSE.txt) for details.

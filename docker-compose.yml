@@ -6,9 +6,10 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "5174:5173"
+      - "3000:3000"
     volumes:
       - ./client:/app
+      - /app/node_modules
     depends_on:
       - server
     networks:
@@ -19,12 +20,29 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - "5001:5000"
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/fatafat-chai
     volumes:
       - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mongodb_data:
