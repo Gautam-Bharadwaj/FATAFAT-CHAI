@@ -9,6 +9,6 @@
     "cypress:run": "cypress run"
   },
   "devDependencies": {
-    "cypress": "^14.0.2"
+    "cypress": "^15.13.0"
   }
 }
