@@ -3,9 +3,7 @@ function getApiUrlPrefix() {
     return process.env.VITE_API_URL || '';
   }
   // Replaced at build time by Vite `define`
-  // eslint-disable-next-line no-undef
   if (typeof __APP_API_URL__ !== 'undefined') {
-    // eslint-disable-next-line no-undef
     return __APP_API_URL__ || '';
   }
   return '';

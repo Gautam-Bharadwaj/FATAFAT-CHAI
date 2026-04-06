@@ -4,7 +4,7 @@ async function getProducts(req, res) {
   try {
     const products = await Product.find().lean();
     return res.json(products);
-  } catch (err) {
+  } catch {
     return res.status(500).json({ message: 'Failed to fetch products' });
   }
 }
@@ -36,7 +36,7 @@ async function createProduct(req, res) {
       stock: stock ?? 0,
     });
     return res.status(201).json(product);
-  } catch (err) {
+  } catch {
     return res.status(500).json({ message: 'Failed to create product' });
   }
 }
