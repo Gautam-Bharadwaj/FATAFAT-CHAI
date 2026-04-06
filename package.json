@@ -1,10 +1,13 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run dev --prefix client",
-        "build": "cd client && npm install && npm run build -- --outDir ../dist"
-    },
-    "dependencies": {
-        "express": "^5.2.1"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "build": "cd client && npm install && npm run build -- --outDir ../dist"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "cypress": "^14.0.2"
+  }
 }
