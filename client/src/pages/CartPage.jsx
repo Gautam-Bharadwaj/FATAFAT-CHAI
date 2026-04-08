@@ -48,7 +48,9 @@ export default function CartPage() {
   return (
     <div className="pt-32 pb-24 min-h-screen" data-testid="cart-page">
       <div className="container mx-auto px-6">
-        <h1 className="text-6xl font-black text-amber-900 mb-8 font-['Amatic_SC'] text-center">Your Cart</h1>
+        <h1 className="text-6xl font-black text-amber-900 mb-8 font-['Amatic_SC'] text-center">
+          Your Cart
+        </h1>
 
         <div className="max-w-4xl mx-auto sketch-box bg-white/60 p-8 relative">
           {/* Decorative Pin */}
@@ -58,7 +60,9 @@ export default function CartPage() {
             {cart.items.length === 0 ? (
               <div className="text-center py-12 text-stone-400 font-['Patrick_Hand'] text-2xl">
                 Your cart is empty... <br />
-                <Link to="/products" className="text-orange-600 underline">Go shopping!</Link>
+                <Link to="/products" className="text-orange-600 underline">
+                  Go shopping!
+                </Link>
               </div>
             ) : (
               <>
@@ -80,16 +84,31 @@ export default function CartPage() {
                 {/* Summary Section */}
                 <div className="w-full border-t-2 border-dashed border-stone-300 pt-8 mt-4">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-xl font-['Patrick_Hand'] text-stone-600">Subtotal</span>
-                    <span className="text-2xl font-bold font-['Amatic_SC'] text-stone-800">₹{cart.subtotal}</span>
+                    <span className="text-xl font-['Patrick_Hand'] text-stone-600">
+                      Subtotal
+                    </span>
+                    <span className="text-2xl font-bold font-['Amatic_SC'] text-stone-800">
+                      ₹{cart.subtotal}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center mb-6">
-                    <span className="text-xl font-['Patrick_Hand'] text-stone-600">Shipping</span>
-                    <span className="text-xl font-['Patrick_Hand'] text-green-600">Free</span>
+                    <span className="text-xl font-['Patrick_Hand'] text-stone-600">
+                      Shipping
+                    </span>
+                    <span className="text-xl font-['Patrick_Hand'] text-green-600">
+                      Free
+                    </span>
                   </div>
                   <div className="flex justify-between items-center mb-8 pb-4 border-b border-stone-200">
-                    <span className="text-3xl font-bold font-['Amatic_SC'] text-amber-900">Total</span>
-                    <span className="text-5xl font-bold font-['Amatic_SC'] text-orange-700" data-testid="cart-subtotal">₹{cart.subtotal}</span>
+                    <span className="text-3xl font-bold font-['Amatic_SC'] text-amber-900">
+                      Total
+                    </span>
+                    <span
+                      className="text-5xl font-bold font-['Amatic_SC'] text-orange-700"
+                      data-testid="cart-subtotal"
+                    >
+                      ₹{cart.subtotal}
+                    </span>
                   </div>
 
                   <div className="flex flex-col gap-4 w-full max-w-md mx-auto">
@@ -100,7 +119,9 @@ export default function CartPage() {
                     >
                       Proceed to Checkout
                     </Link>
-                    <p className="text-center text-stone-400 font-['Patrick_Hand'] text-sm">Secure Payment • Fast Delivery</p>
+                    <p className="text-center text-stone-400 font-['Patrick_Hand'] text-sm">
+                      Secure Payment • Fast Delivery
+                    </p>
                   </div>
                 </div>
               </>

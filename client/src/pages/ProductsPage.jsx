@@ -35,7 +35,9 @@ export default function ProductsPage() {
     <div className="pt-32 pb-24 min-h-screen" data-testid="products-page">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20">
-          <h1 className="text-6xl font-black text-amber-900 mb-4 font-['Amatic_SC']">Our Teas</h1>
+          <h1 className="text-6xl font-black text-amber-900 mb-4 font-['Amatic_SC']">
+            Our Teas
+          </h1>
           <div className="h-1 w-24 bg-amber-600 mx-auto rounded-full opacity-60"></div>
         </div>
 
@@ -65,10 +67,22 @@ export default function ProductsPage() {
                   />
                 )}
               </div>
-              <h3 className="text-4xl font-bold font-['Amatic_SC'] text-amber-900 mb-2" data-testid="product-name">{p.name}</h3>
-              <p className="text-stone-600 mb-6 text-lg leading-snug">{p.description}</p>
+              <h3
+                className="text-4xl font-bold font-['Amatic_SC'] text-amber-900 mb-2"
+                data-testid="product-name"
+              >
+                {p.name}
+              </h3>
+              <p className="text-stone-600 mb-6 text-lg leading-snug">
+                {p.description}
+              </p>
               <div className="flex items-center justify-between">
-                <span className="text-2xl font-bold text-orange-800" data-testid="product-price">₹{p.price}</span>
+                <span
+                  className="text-2xl font-bold text-orange-800"
+                  data-testid="product-price"
+                >
+                  ₹{p.price}
+                </span>
                 <button
                   onClick={(e) => handleAdd(p, e)}
                   className="sketch-btn text-sm py-2 px-6"

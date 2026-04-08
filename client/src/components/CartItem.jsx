@@ -21,10 +21,16 @@ export default function CartItem({
           />
         </div>
         <div className="text-center sm:text-left">
-          <h3 className="text-3xl font-bold text-amber-900 font-['Amatic_SC']" data-testid="cart-item-name">
+          <h3
+            className="text-3xl font-bold text-amber-900 font-['Amatic_SC']"
+            data-testid="cart-item-name"
+          >
             {name}
           </h3>
-          <p className="text-lg text-stone-500 font-['Patrick_Hand']" data-testid="cart-item-unit-price">
+          <p
+            className="text-lg text-stone-500 font-['Patrick_Hand']"
+            data-testid="cart-item-unit-price"
+          >
             ₹{price} each
           </p>
           <div className="flex items-center gap-3 mt-2">
@@ -37,7 +43,12 @@ export default function CartItem({
             >
               −
             </button>
-            <span data-testid="cart-item-qty" className="text-xl font-bold font-['Patrick_Hand']">{quantity}</span>
+            <span
+              data-testid="cart-item-qty"
+              className="text-xl font-bold font-['Patrick_Hand']"
+            >
+              {quantity}
+            </span>
             <button
               type="button"
               aria-label="increase quantity"
@@ -58,7 +69,10 @@ export default function CartItem({
           </button>
         </div>
       </div>
-      <div className="mt-4 sm:mt-0 text-3xl font-bold text-orange-800 font-['Amatic_SC']" data-testid="cart-item-line-total">
+      <div
+        className="mt-4 sm:mt-0 text-3xl font-bold text-orange-800 font-['Amatic_SC']"
+        data-testid="cart-item-line-total"
+      >
         ₹{price * quantity}
       </div>
     </div>

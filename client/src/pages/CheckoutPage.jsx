@@ -12,17 +12,24 @@ export default function CheckoutPage() {
 
   if (submitted) {
     return (
-      <div className="pt-32 pb-24 min-h-screen flex items-center justify-center" data-testid="order-confirmation">
+      <div
+        className="pt-32 pb-24 min-h-screen flex items-center justify-center"
+        data-testid="order-confirmation"
+      >
         <div className="sketch-box bg-white/60 p-12 text-center max-w-md mx-auto">
           <div className="text-6xl mb-6">🎉</div>
-          <h2 className="text-5xl font-bold text-amber-900 font-['Amatic_SC'] mb-4">Thank You!</h2>
+          <h2 className="text-5xl font-bold text-amber-900 font-['Amatic_SC'] mb-4">
+            Thank You!
+          </h2>
           <p className="text-xl font-['Patrick_Hand'] text-green-700 mb-6">
             Your order is confirmed.
           </p>
           <p className="text-stone-500 font-['Indie_Flower'] text-lg mb-8">
-            We'll brew your chai with love and ship it fast! 🍵
+            We&apos;ll brew your chai with love and ship it fast! 🍵
           </p>
-          <Link to="/" className="sketch-btn px-8 py-3 text-lg">Back to Home</Link>
+          <Link to="/" className="sketch-btn px-8 py-3 text-lg">
+            Back to Home
+          </Link>
         </div>
       </div>
     );
@@ -35,11 +42,16 @@ export default function CheckoutPage() {
           {/* Decorative Pin */}
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-red-800 rounded-full shadow-md z-20 border-2 border-white/50"></div>
 
-          <h1 className="text-6xl font-bold text-amber-900 mb-8 font-['Amatic_SC'] text-center">Checkout</h1>
+          <h1 className="text-6xl font-bold text-amber-900 mb-8 font-['Amatic_SC'] text-center">
+            Checkout
+          </h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="address" className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1">
+              <label
+                htmlFor="address"
+                className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1"
+              >
                 Shipping Address
               </label>
               <textarea
@@ -60,7 +72,9 @@ export default function CheckoutPage() {
             >
               Place Order
             </button>
-            <p className="text-center text-stone-400 font-['Patrick_Hand'] text-sm">Secure Payment • Fast Delivery</p>
+            <p className="text-center text-stone-400 font-['Patrick_Hand'] text-sm">
+              Secure Payment • Fast Delivery
+            </p>
           </form>
         </div>
       </div>

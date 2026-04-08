@@ -30,7 +30,9 @@ export default function ProductDetailPage() {
   if (error || !product) {
     return (
       <div className="pt-32 min-h-screen flex items-center justify-center">
-        <p className="text-stone-600 font-['Patrick_Hand'] text-2xl">{error || 'Loading…'}</p>
+        <p className="text-stone-600 font-['Patrick_Hand'] text-2xl">
+          {error || 'Loading…'}
+        </p>
       </div>
     );
   }
@@ -55,13 +57,22 @@ export default function ProductDetailPage() {
 
             {/* Product Info */}
             <div>
-              <h1 className="text-6xl font-bold font-['Amatic_SC'] text-amber-900 mb-4" data-testid="product-detail-name">
+              <h1
+                className="text-6xl font-bold font-['Amatic_SC'] text-amber-900 mb-4"
+                data-testid="product-detail-name"
+              >
                 {product.name}
               </h1>
-              <p className="text-3xl font-bold text-orange-800 my-4 font-['Amatic_SC']" data-testid="product-detail-price">
+              <p
+                className="text-3xl font-bold text-orange-800 my-4 font-['Amatic_SC']"
+                data-testid="product-detail-price"
+              >
                 ₹{product.price}
               </p>
-              <p className="text-stone-700 mb-8 text-lg font-['Indie_Flower'] leading-relaxed" data-testid="product-detail-description">
+              <p
+                className="text-stone-700 mb-8 text-lg font-['Indie_Flower'] leading-relaxed"
+                data-testid="product-detail-description"
+              >
                 {product.description}
               </p>
               <button

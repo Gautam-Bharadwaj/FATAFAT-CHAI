@@ -23,17 +23,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="pt-32 pb-24 min-h-screen flex items-center justify-center" data-testid="login-page">
+    <div
+      className="pt-32 pb-24 min-h-screen flex items-center justify-center"
+      data-testid="login-page"
+    >
       <div className="w-full max-w-md mx-auto">
         <div className="sketch-box bg-white/60 p-8 md:p-12 relative">
           {/* Decorative Pin */}
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-red-800 rounded-full shadow-md z-20 border-2 border-white/50"></div>
 
-          <h1 className="text-6xl font-bold text-amber-900 mb-8 font-['Amatic_SC'] text-center">Login</h1>
+          <h1 className="text-6xl font-bold text-amber-900 mb-8 font-['Amatic_SC'] text-center">
+            Login
+          </h1>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1"
+              >
                 Email
               </label>
               <input
@@ -48,7 +56,10 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1">
+              <label
+                htmlFor="password"
+                className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1"
+              >
                 Password
               </label>
               <input
@@ -63,7 +74,10 @@ export default function LoginPage() {
               />
             </div>
             {error && (
-              <p className="text-red-600 text-sm font-['Patrick_Hand']" data-testid="login-error">
+              <p
+                className="text-red-600 text-sm font-['Patrick_Hand']"
+                data-testid="login-error"
+              >
                 {error}
               </p>
             )}
