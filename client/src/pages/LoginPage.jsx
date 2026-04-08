@@ -23,50 +23,60 @@ export default function LoginPage() {
   }
 
   return (
-    <div data-testid="login-page">
-      <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <form onSubmit={handleSubmit} className="max-w-sm space-y-4">
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium">
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            data-testid="login-email"
-            className="border w-full px-2 py-1"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+    <div className="pt-32 pb-24 min-h-screen flex items-center justify-center" data-testid="login-page">
+      <div className="w-full max-w-md mx-auto">
+        <div className="sketch-box bg-white/60 p-8 md:p-12 relative">
+          {/* Decorative Pin */}
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-red-800 rounded-full shadow-md z-20 border-2 border-white/50"></div>
+
+          <h1 className="text-6xl font-bold text-amber-900 mb-8 font-['Amatic_SC'] text-center">Login</h1>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="email" className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                data-testid="login-email"
+                className="w-full px-4 py-3 border-2 border-stone-300 rounded-md bg-white/80 font-['Indie_Flower'] text-lg focus:border-orange-500 focus:outline-none transition-colors"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="chai@lover.com"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-lg font-['Patrick_Hand'] text-stone-600 mb-1">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                data-testid="login-password"
+                className="w-full px-4 py-3 border-2 border-stone-300 rounded-md bg-white/80 font-['Indie_Flower'] text-lg focus:border-orange-500 focus:outline-none transition-colors"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="••••••"
+              />
+            </div>
+            {error && (
+              <p className="text-red-600 text-sm font-['Patrick_Hand']" data-testid="login-error">
+                {error}
+              </p>
+            )}
+            <button
+              type="submit"
+              data-testid="login-submit"
+              className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 rounded-full shadow-lg transition-all transform hover:scale-[1.02] text-2xl font-['Amatic_SC'] tracking-wider"
+            >
+              Login
+            </button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium">
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            data-testid="login-password"
-            className="border w-full px-2 py-1"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error ? (
-          <p className="text-red-600 text-sm" data-testid="login-error">
-            {error}
-          </p>
-        ) : null}
-        <button
-          type="submit"
-          data-testid="login-submit"
-          className="px-4 py-2 bg-orange-600 text-white rounded"
-        >
-          Login
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
