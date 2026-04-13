@@ -41,8 +41,8 @@ case $ACTION in
         docker compose up --build -d
         echo -e "\n${GREEN}✓ Containers are running!${NC}"
         echo -e ""
-        echo -e "  Client: ${YELLOW}http://localhost:5174${NC}"
-        echo -e "  Server: ${YELLOW}http://localhost:5001${NC}"
+        echo -e "  Client: ${YELLOW}http://localhost:3000${NC}"
+        echo -e "  Server: ${YELLOW}http://localhost:5000${NC}"
         echo -e ""
         echo -e "  View logs:  ${BLUE}bash scripts/docker-run.sh logs${NC}"
         echo -e "  Stop:       ${BLUE}bash scripts/docker-run.sh stop${NC}"

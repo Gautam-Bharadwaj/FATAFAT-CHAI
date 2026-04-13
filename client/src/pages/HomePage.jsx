@@ -1,55 +1,8 @@
-import { useState } from 'react';
-
-const PRODUCTS = [
-  {
-    id: 'masala-chai',
-    name: 'Masala Chai',
-    price: 450,
-    image: '/assets/masala-chai.png',
-    desc: 'The classic 7-spice blend. Ginger, cardamom, and clove dance in a cup of strong Assam tea.',
-  },
-  {
-    id: 'elaichi-chai',
-    name: 'Elaichi Chai',
-    price: 450,
-    image: '/assets/elaichi-chai.png',
-    desc: 'Pure, aromatic green cardamom. Sweet, floral, and incredibly refreshing.',
-    badge: 'Bestseller',
-    badgeColor: 'bg-orange-600 text-white',
-  },
-  {
-    id: 'adrak-chai',
-    name: 'Adrak Chai',
-    price: 420,
-    image: '/assets/adrak-chai.png',
-    desc: 'Fresh ginger root extract for that perfect morning kick. Spicy and invigorating.',
-  },
-  {
-    id: 'kesar-chai',
-    name: 'Kesar Chai',
-    price: 550,
-    image: '/assets/kesar-chai.png',
-    desc: 'Royal saffron strands blended with cardamom. A golden cup of luxury for special moments.',
-    badge: 'Premium',
-    badgeColor: 'bg-yellow-500 text-amber-900',
-  },
-  {
-    id: 'tulsi-chai',
-    name: 'Tulsi Chai',
-    price: 420,
-    image: '/assets/tulsi-chai.png',
-    desc: 'Healing Holy Basil leaves with a touch of spice. An immunity-boosting herbal embrace.',
-  },
-  {
-    id: 'chocolate-chai',
-    name: 'Chocolate Chai',
-    price: 480,
-    image: '/assets/chocolate-chai.png',
-    desc: 'Rich dark cocoa meets spicy chai. A modern fusion that tastes like a warm hug.',
-    badge: 'New Fusion',
-    badgeColor: 'bg-amber-800 text-orange-100',
-  },
-];
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+import { apiGet } from '../api/client';
 
 const STORY_STEPS = [
   {
@@ -146,20 +99,19 @@ const SPICES = [
 const basePrices = { plain: 450, one: 450, two: 450 };
 const addOnPrices = { plain: 0, one: 70, two: 140 };
 
-function addToLocalCart(item) {
-  const cart = JSON.parse(localStorage.getItem('fatafat-cart')) || [];
-  const existing = cart.find((c) => c.id === item.id);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ ...item, quantity: 1 });
-  }
-  localStorage.setItem('fatafat-cart', JSON.stringify(cart));
-}
-
 export default function HomePage() {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+  const { addToCart } = useCart();
+  const [products, setProducts] = useState([]);
   const [currentBase, setCurrentBase] = useState('plain');
   const [selectedSpices, setSelectedSpices] = useState([]);
+
+  useEffect(() => {
+    apiGet('/api/products')
+      .then((data) => setProducts(data.slice(0, 6)))
+      .catch((err) => console.error('Failed to fetch products:', err));
+  }, []);
 
   const maxSpices = currentBase === 'one' ? 1 : currentBase === 'two' ? 2 : 0;
   const addOn = addOnPrices[currentBase];
@@ -190,28 +142,25 @@ export default function HomePage() {
     });
   }
 
-  function handleAddProduct(product) {
-    addToLocalCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-    });
-    alert(`${product.name} added to cart! 🍵`);
+  async function handleAddProduct(product) {
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+    const success = await addToCart(product._id, 1);
+    if (success) {
+      alert(`${product.name} added to cart! 🍵`);
+    } else {
+      alert('Failed to add to cart. Please try again.');
+    }
   }
 
   function handleCustomBuy() {
-    const description =
-      currentBase === 'plain'
-        ? 'Plain Assam Gold'
-        : `Tea + ${selectedSpices.join(', ')}`;
-    addToLocalCart({
-      id: `custom-chai-${Date.now()}`,
-      name: `Custom Chai: ${description}`,
-      price: total,
-      image: '/assets/chai-pouch-premium.png',
-    });
-    alert('Custom Chai added to cart! 🎉');
+    // For now, since custom logic isn't in backend, redirect to products or alert
+    alert(
+      `Custom blend (${selectedSpices.join(', ')}) order functionality is coming soon! For now, try our bestsellers. 🎉`
+    );
+    navigate('/products');
   }
 
   return (
@@ -285,18 +234,11 @@ export default function HomePage() {
         </div>
 
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-6">
-          {PRODUCTS.map((product, i) => (
+          {products.map((product, i) => (
             <div
-              key={product.id}
+              key={product._id}
               className={`sketch-box bg-white/60 relative group ${i > 2 ? 'mt-8 md:mt-12' : i > 0 && i <= 2 ? 'mt-8 md:mt-0' : ''}`}
             >
-              {product.badge && (
-                <div
-                  className={`absolute -top-4 ${i === 5 ? '-left-4 rotate-3' : '-right-4 rotate-12'} ${product.badgeColor} font-bold py-1 px-4 transform rounded-sm font-['Patrick_Hand'] shadow-md z-10`}
-                >
-                  {product.badge}
-                </div>
-              )}
               <div className="h-48 flex items-center justify-center mb-6 overflow-hidden rounded-lg">
                 <img
                   src={product.image}
@@ -308,7 +250,7 @@ export default function HomePage() {
                 {product.name}
               </h3>
               <p className="text-stone-600 mb-6 text-lg leading-snug">
-                {product.desc}
+                {product.description}
               </p>
               <div className="flex items-center justify-between">
                 <span className="text-2xl font-bold text-orange-800">

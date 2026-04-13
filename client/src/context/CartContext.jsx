@@ -7,7 +7,7 @@ import {
   useEffect,
 } from 'react';
 import { useAuth } from './AuthContext';
-import { apiGet } from '../api/client';
+import { apiGet, apiPost, apiDelete } from '../api/client';
 
 const CartContext = createContext(null);
 
@@ -32,13 +32,43 @@ export function CartProvider({ children }) {
     }
   }, [token]);
 
+  const addToCart = useCallback(
+    async (productId, quantity = 1) => {
+      if (!token) return false;
+      try {
+        await apiPost('/api/cart', { productId, quantity }, token);
+        await refreshCart();
+        return true;
+      } catch (err) {
+        console.error('Add to cart failed:', err);
+        return false;
+      }
+    },
+    [token, refreshCart]
+  );
+
+  const removeFromCart = useCallback(
+    async (itemId) => {
+      if (!token) return false;
+      try {
+        await apiDelete(`/api/cart/${itemId}`, token);
+        await refreshCart();
+        return true;
+      } catch (err) {
+        console.error('Remove from cart failed:', err);
+        return false;
+      }
+    },
+    [token, refreshCart]
+  );
+
   useEffect(() => {
     refreshCart();
   }, [refreshCart]);
 
   const value = useMemo(
-    () => ({ itemCount, setItemCount, refreshCart }),
-    [itemCount, refreshCart]
+    () => ({ itemCount, setItemCount, refreshCart, addToCart, removeFromCart }),
+    [itemCount, refreshCart, addToCart, removeFromCart]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

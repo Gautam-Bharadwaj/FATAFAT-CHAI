@@ -24,10 +24,22 @@ EXIT_CODE=0
 echo -e "${YELLOW}▸ Running server tests...${NC}"
 cd server
 
-if npx jest --passWithNoTests --forceExit 2>&1; then
+if npm test 2>&1; then
     echo -e "${GREEN}✓ Server tests passed${NC}"
 else
     echo -e "${RED}✗ Server tests failed${NC}"
+    EXIT_CODE=1
+fi
+cd ..
+
+# ── Run Client Tests ──
+echo -e "\n${YELLOW}▸ Running client tests...${NC}"
+cd client
+
+if npm test -- --passWithNoTests 2>&1; then
+    echo -e "${GREEN}✓ Client tests passed${NC}"
+else
+    echo -e "${RED}✗ Client tests failed${NC}"
     EXIT_CODE=1
 fi
 cd ..

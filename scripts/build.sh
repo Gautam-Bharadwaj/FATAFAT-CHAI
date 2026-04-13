@@ -36,7 +36,8 @@ echo -e "\n${YELLOW}▸ Building client for production...${NC}"
 cd client
 npm run build
 cd ..
-echo -e "${GREEN}✓ Client built successfully${NC}"
+cp -r client/dist dist
+echo -e "${GREEN}✓ Client built and copied to root dist/${NC}"
 
 # ── Show build info ──
 BUILD_SIZE=$(du -sh client/dist 2>/dev/null | cut -f1 || echo "N/A")

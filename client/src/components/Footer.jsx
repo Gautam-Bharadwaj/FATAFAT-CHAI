@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   return (
     <footer className="bg-stone-800 text-stone-300 py-16 mt-12 relative overflow-hidden">
       {/* Texture overlay */}
       <div className="absolute inset-0 opacity-10 bg-[url('/assets/bg-parchment.png')] mix-blend-overlay"></div>
 
-      <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+      <div className="container mx-auto px-6 grid grid-cols-1 md:col-span-2 md:grid-cols-4 gap-12 relative z-10">
         <div className="col-span-1 md:col-span-2">
           <h2 className="text-5xl font-bold text-amber-50 mb-4 font-['Amatic_SC']">
             Fatafat Chai
@@ -21,24 +23,33 @@ export default function Footer() {
           </h4>
           <ul className="space-y-3">
             <li>
-              <a href="#" className="hover:text-orange-400 transition-colors">
+              <Link
+                to="/products"
+                className="hover:text-orange-400 transition-colors"
+              >
                 Shop All
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-orange-400 transition-colors">
+              <Link to="/" className="hover:text-orange-400 transition-colors">
                 Our Story
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-orange-400 transition-colors">
+              <Link
+                to="/products"
+                className="hover:text-orange-400 transition-colors"
+              >
                 Wholesale
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-orange-400 transition-colors">
+              <Link
+                to="/products"
+                className="hover:text-orange-400 transition-colors"
+              >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

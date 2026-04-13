@@ -2,11 +2,9 @@
 
 **Fast, authentic chai — from cart to cup.** A tea e-commerce style monorepo with a React (Vite) storefront, Express + MongoDB API, automated tests, and optional EC2 + PM2 deployment.
 
-[![CI](https://github.com/PLACEHOLDER_ORG/FATAFAT-CHAI/actions/workflows/ci.yml/badge.svg)](https://github.com/PLACEHOLDER_ORG/FATAFAT-CHAI/actions/workflows/ci.yml)
+[![CI](https://github.com/Gautam-Bharadwaj/FATAFAT-CHAI/actions/workflows/ci.yml/badge.svg)](https://github.com/Gautam-Bharadwaj/FATAFAT-CHAI/actions/workflows/ci.yml)
 ![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-
-Replace `PLACEHOLDER_ORG` in the badge URLs with your GitHub org or username after publishing the repository.
 
 ## Architecture
 

@@ -1,5 +1,5 @@
 function getApiUrlPrefix() {
-  if (process.env.NODE_ENV === 'test') {
+  if (typeof process !== 'undefined' && process.env.NODE_ENV === 'test') {
     return process.env.VITE_API_URL || '';
   }
   // Replaced at build time by Vite `define`
