@@ -3,7 +3,7 @@
   "scripts": {
     "setup": "bash scripts/setup.sh",
     "dev": "bash scripts/dev.sh",
-    "build": "npm run build --prefix client",
+    "build": "npm run build --prefix client && rm -rf dist && cp -r client/dist dist",
     "test": "npm test --prefix server && npm test --prefix client",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"

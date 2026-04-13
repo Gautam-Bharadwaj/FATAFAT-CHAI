@@ -1,6 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-background: #09090b;
+  --color-primary: #ffffff;
+  --color-accent: #eab308;
+  --font-sans: "Inter", "sans-serif";
+}
 
 :root {
   --bg-color: #f8f5e6;
