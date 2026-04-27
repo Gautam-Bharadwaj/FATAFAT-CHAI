@@ -109,8 +109,66 @@ export default function HomePage() {
 
   useEffect(() => {
     apiGet('/api/products')
-      .then((data) => setProducts(data.slice(0, 6)))
-      .catch((err) => console.error('Failed to fetch products:', err));
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setProducts(data.slice(0, 6));
+        } else {
+          throw new Error('Products array is empty or invalid');
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to fetch products, using fallbacks:', err);
+        setProducts([
+          {
+            _id: '1',
+            name: 'Masala Chai',
+            description:
+              'The classic 7-spice blend. Ginger, cardamom, and clove dance in a cup of strong Assam tea.',
+            price: 450,
+            image: '/assets/masala-chai.png',
+          },
+          {
+            _id: '2',
+            name: 'Elaichi Chai',
+            description:
+              'Pure, aromatic green cardamom. Sweet, floral, and incredibly refreshing.',
+            price: 450,
+            image: '/assets/elaichi-chai.png',
+          },
+          {
+            _id: '3',
+            name: 'Adrak Chai',
+            description:
+              'Fresh ginger root extract for that perfect morning kick. Spicy and invigorating.',
+            price: 420,
+            image: '/assets/adrak-chai.png',
+          },
+          {
+            _id: '4',
+            name: 'Kesar Chai',
+            description:
+              'Royal saffron strands blended with cardamom. A golden cup of luxury for special moments.',
+            price: 550,
+            image: '/assets/kesar-chai.png',
+          },
+          {
+            _id: '5',
+            name: 'Tulsi Chai',
+            description:
+              'Healing Holy Basil leaves with a touch of spice. An immunity-boosting herbal embrace.',
+            price: 420,
+            image: '/assets/tulsi-chai.png',
+          },
+          {
+            _id: '6',
+            name: 'Chocolate Chai',
+            description:
+              'Rich dark cocoa meets spicy chai. A modern fusion that tastes like a warm hug.',
+            price: 480,
+            image: '/assets/chocolate-chai.png',
+          },
+        ]);
+      });
   }, []);
 
   const maxSpices = currentBase === 'one' ? 1 : currentBase === 'two' ? 2 : 0;
@@ -287,7 +345,7 @@ export default function HomePage() {
         ></div>
 
         {/* Toy Train */}
-        <div className="absolute left-1/2 -translate-x-1/2 top-72 z-30 hidden md:flex flex-col items-center transform rotate-180 origin-center filter drop-shadow-xl">
+        <div className="absolute left-1/2 -translate-x-1/2 z-30 hidden md:flex flex-col items-center transform rotate-180 origin-center filter drop-shadow-xl animate-train-move">
           <div className="relative w-full flex justify-center mb-2">
             <div className="absolute -top-12 w-6 h-6 bg-white/40 rounded-full animate-ping delay-75"></div>
             <div className="absolute -top-6 w-4 h-4 bg-white/60 rounded-full animate-ping"></div>

@@ -174,20 +174,6 @@ export default function Navbar() {
           )}
         </div>
       </div>
-
-      {/* Development Warning Strip */}
-      <div className="marquee-container font-['Patrick_Hand'] text-lg tracking-widest uppercase">
-        <div className="marquee-content">
-          🚧 This project is under development 🚂 This project is under
-          development 🚂 This project is under development 🚂 This project is
-          under development 🚂 This project is under development 🚂
-        </div>
-        <div className="marquee-content">
-          🚧 This project is under development 🚂 This project is under
-          development 🚂 This project is under development 🚂 This project is
-          under development 🚂 This project is under development 🚂
-        </div>
-      </div>
     </header>
   );
 }
