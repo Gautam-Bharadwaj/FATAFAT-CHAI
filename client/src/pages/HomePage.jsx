@@ -106,6 +106,22 @@ export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [currentBase, setCurrentBase] = useState('plain');
   const [selectedSpices, setSelectedSpices] = useState([]);
+  const [trainPosition, setTrainPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const storySection = document.getElementById('story');
+      if (storySection) {
+        const rect = storySection.getBoundingClientRect();
+        // Start moving when section comes into view
+        const scrollAmount = Math.max(0, window.innerHeight - rect.top);
+        setTrainPosition(scrollAmount * 0.8);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // initialize
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     apiGet('/api/products')
@@ -345,7 +361,10 @@ export default function HomePage() {
         ></div>
 
         {/* Toy Train */}
-        <div className="absolute left-1/2 -translate-x-1/2 z-30 hidden md:flex flex-col items-center transform rotate-180 origin-center filter drop-shadow-xl animate-train-move">
+        <div
+          className="absolute left-1/2 -translate-x-1/2 z-30 hidden md:flex flex-col items-center transform rotate-180 origin-center filter drop-shadow-xl"
+          style={{ top: `${Math.max(-100, trainPosition - 200)}px` }}
+        >
           <div className="relative w-full flex justify-center mb-2">
             <div className="absolute -top-12 w-6 h-6 bg-white/40 rounded-full animate-ping delay-75"></div>
             <div className="absolute -top-6 w-4 h-4 bg-white/60 rounded-full animate-ping"></div>

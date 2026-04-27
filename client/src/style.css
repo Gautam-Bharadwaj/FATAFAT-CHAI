@@ -438,17 +438,3 @@ nav a:hover::after {
   font-size: 28px;
   animation-delay: -20s;
 }
-
-/* ── Train Animation ── */
-@keyframes train-move {
-  0% {
-    top: -200px;
-  }
-  100% {
-    top: 2000px;
-  }
-}
-
-.animate-train-move {
-  animation: train-move 20s linear infinite;
-}
