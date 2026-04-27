@@ -6,11 +6,11 @@ on:
 
 env:
   AWS_REGION: us-east-1                   # Aapka AWS region
-  ECR_REPOSITORY: shopsmart              # ECR repo ka naam
-  ECS_SERVICE: shopsmart-service          # ECS service ka naam
-  ECS_CLUSTER: shopsmart-cluster          # ECS cluster ka naam
+  ECR_REPOSITORY: fatafat-chai            # ECR repo ka naam
+  ECS_SERVICE: fatafat-service            # ECS service ka naam
+  ECS_CLUSTER: fatafat-cluster-first            # ECS cluster ka naam
   ECS_TASK_DEFINITION: .aws/task-definition.json # Task definition file ka path
-  CONTAINER_NAME: shopsmart-app             # Container ka naam
+  CONTAINER_NAME: fatafat-app             # Container ka naam
 
 jobs:
   deploy:
