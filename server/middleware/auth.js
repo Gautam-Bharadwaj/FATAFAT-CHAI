@@ -11,10 +11,10 @@ function requireAuth(req, res, next) {
   try {
     const decoded = verifyToken(token);
     // Supabase uses 'sub' for user ID, local auth uses 'userId'
-    req.user = { 
-      id: decoded.sub || decoded.userId, 
-      role: decoded.role || (decoded.user_metadata?.role) || 'user',
-      email: decoded.email
+    req.user = {
+      id: decoded.sub || decoded.userId,
+      role: decoded.role || decoded.user_metadata?.role || 'user',
+      email: decoded.email,
     };
     return next();
   } catch {

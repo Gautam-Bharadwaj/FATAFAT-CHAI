@@ -17,7 +17,9 @@ export function AuthProvider({ children }) {
     });
 
     // Listen for changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
@@ -28,15 +30,17 @@ export function AuthProvider({ children }) {
 
   const value = {
     token: session?.access_token ?? null,
-    user: user ? {
-      id: user.id,
-      email: user.email,
-      name: user.user_metadata?.full_name || user.email?.split('@')[0]
-    } : null,
+    user: user
+      ? {
+          id: user.id,
+          email: user.email,
+          name: user.user_metadata?.full_name || user.email?.split('@')[0],
+        }
+      : null,
     logout: async () => {
       await supabase.auth.signOut();
     },
-    loading
+    loading,
   };
 
   return (

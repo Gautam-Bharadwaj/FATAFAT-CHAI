@@ -6,7 +6,9 @@ export const supabase = {
     onAuthStateChange: jest.fn(() => ({
       data: { subscription: { unsubscribe: jest.fn() } },
     })),
-    getSession: jest.fn(() => Promise.resolve({ data: { session: null }, error: null })),
+    getSession: jest.fn(() =>
+      Promise.resolve({ data: { session: null }, error: null })
+    ),
   },
   from: jest.fn(() => ({
     select: jest.fn().mockReturnThis(),
