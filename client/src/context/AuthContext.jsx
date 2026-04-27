@@ -1,45 +1,49 @@
-import { createContext, useContext, useMemo, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../utils/supabaseClient';
 
 const AuthContext = createContext(null);
 
-const STORAGE_KEY = 'fatafat-auth';
-
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() =>
-    localStorage.getItem('fatafat-token')
-  );
-  const [user, setUser] = useState(() => {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : null;
-  });
+  const [session, setSession] = useState(null);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) localStorage.setItem('fatafat-token', token);
-    else localStorage.removeItem('fatafat-token');
-  }, [token]);
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
 
-  useEffect(() => {
-    if (user) localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    else localStorage.removeItem(STORAGE_KEY);
-  }, [user]);
+    // Listen for changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
 
-  const value = useMemo(
-    () => ({
-      token,
-      user,
-      setAuth: (t, u) => {
-        setToken(t);
-        setUser(u);
-      },
-      logout: () => {
-        setToken(null);
-        setUser(null);
-      },
-    }),
-    [token, user]
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const value = {
+    token: session?.access_token ?? null,
+    user: user ? {
+      id: user.id,
+      email: user.email,
+      name: user.user_metadata?.full_name || user.email?.split('@')[0]
+    } : null,
+    logout: async () => {
+      await supabase.auth.signOut();
+    },
+    loading
+  };
+
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
   );
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

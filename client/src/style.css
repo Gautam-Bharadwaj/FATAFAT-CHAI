@@ -1,11 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-  --color-background: #09090b;
-  --color-primary: #ffffff;
-  --color-accent: #eab308;
-  --font-sans: "Inter", "sans-serif";
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --bg-color: #f8f5e6;
@@ -349,7 +344,7 @@ nav a:hover::after {
   bottom: 0;
   left: 0;
   width: 100%;
-  transform: translateY(100%);
+  transform: translateY(0);
   background-color: #9b2226;
   /* Deeper, more vintage red */
   color: #f8f5e6;

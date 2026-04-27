@@ -12,7 +12,8 @@ function signToken(payload) {
 }
 
 function verifyToken(token) {
-  return jwt.verify(token, getJwtSecret());
+  const secret = process.env.SUPABASE_JWT_SECRET || getJwtSecret();
+  return jwt.verify(token, secret);
 }
 
 async function hashPassword(plain) {

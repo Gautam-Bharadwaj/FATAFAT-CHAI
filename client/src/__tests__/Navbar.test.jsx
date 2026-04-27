@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { AuthProvider } from '../context/AuthContext';
 import { CartProvider } from '../context/CartContext';
 import Navbar from '../components/Navbar';
+import { supabase } from '../utils/supabaseClient';
 
 function renderNav(ui, { route = '/' } = {}) {
   return render(
@@ -17,36 +18,46 @@ function renderNav(ui, { route = '/' } = {}) {
 
 describe('Navbar', () => {
   beforeEach(() => {
-    localStorage.clear();
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ items: [], subtotal: 0 }),
-      })
-    );
+    jest.clearAllMocks();
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: null },
+      error: null,
+    });
+    supabase.auth.onAuthStateChange.mockReturnValue({
+      data: { subscription: { unsubscribe: jest.fn() } },
+    });
   });
 
-  it('renders navigation links', () => {
+  it('renders navigation links', async () => {
     renderNav(<Navbar />);
-    expect(screen.getByTestId('nav-home')).toBeInTheDocument();
+    expect(await screen.findByTestId('nav-home')).toBeInTheDocument();
     expect(screen.getByTestId('nav-products')).toBeInTheDocument();
     expect(screen.getByTestId('nav-cart')).toBeInTheDocument();
     expect(screen.getByTestId('nav-login')).toBeInTheDocument();
   });
 
   it('shows user name and logout when authenticated', async () => {
-    localStorage.setItem('fatafat-token', 'fake-jwt');
-    localStorage.setItem(
-      'fatafat-auth',
-      JSON.stringify({ email: 'tea@fatafat.test', name: 'Chai Lover' })
-    );
+    const mockUser = {
+      id: '123',
+      email: 'tea@fatafat.test',
+      user_metadata: { full_name: 'Chai Lover' },
+    };
+    const mockSession = { access_token: 'fake-jwt', user: mockUser };
+
+    supabase.auth.getSession.mockResolvedValue({
+      data: { session: mockSession },
+      error: null,
+    });
+
     const user = userEvent.setup();
     renderNav(<Navbar />);
+
     expect(await screen.findByTestId('nav-user-name')).toHaveTextContent(
       'Chai Lover'
     );
     expect(screen.getByTestId('nav-logout')).toBeInTheDocument();
+
     await user.click(screen.getByTestId('nav-logout'));
-    expect(screen.getByTestId('nav-login')).toBeInTheDocument();
+    expect(supabase.auth.signOut).toHaveBeenCalled();
   });
 });

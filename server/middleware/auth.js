@@ -10,7 +10,12 @@ function requireAuth(req, res, next) {
   const token = authHeader.slice(7);
   try {
     const decoded = verifyToken(token);
-    req.user = { id: decoded.userId, role: decoded.role };
+    // Supabase uses 'sub' for user ID, local auth uses 'userId'
+    req.user = { 
+      id: decoded.sub || decoded.userId, 
+      role: decoded.role || (decoded.user_metadata?.role) || 'user',
+      email: decoded.email
+    };
     return next();
   } catch {
     return res.status(401).json({ message: 'Invalid or expired token.' });
