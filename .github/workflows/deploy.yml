@@ -25,5 +25,5 @@ jobs:
             npm ci --prefix server
             npm ci --prefix client
             npm run build --prefix client
-            pm2 restart fatafat-api || pm2 start server/server.js --name fatafat-api
+            NODE_ENV=production pm2 restart fatafat-api || NODE_ENV=production pm2 start server/server.js --name fatafat-api
             pm2 save

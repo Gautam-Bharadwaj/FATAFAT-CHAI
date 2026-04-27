@@ -92,9 +92,8 @@ In the EC2 security group, allow:
 | Port  | Source        | Use |
 |-------|---------------|-----|
 | 22    | Your IP (or bastion) | SSH |
-| 5000  | Your choice   | API (restrict in production; prefer Nginx + HTTPS) |
-| 3000  | Your choice   | Dev / preview client (optional) |
-| 80/443| 0.0.0.0/0     | If using Nginx + TLS for the site |
+| 5000  | 0.0.0.0/0     | Application (Frontend + API) |
+| 80/443| 0.0.0.0/0     | Recommended (via Nginx reverse proxy to 5000) |
 
 Restrict **22** to known IPs when possible.
 
